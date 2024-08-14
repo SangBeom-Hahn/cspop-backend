@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/CSPOP-BACKEND?autoReconnect=true&serverTimezone=Asia/Seoul
-    username: root
-    password: root
+    url: ${SOURCE_MYSQL_URL}
+    username: ${SOURCE_MYSQL_USERNAME}
+    password: ${SOURCE_MYSQL_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: create
