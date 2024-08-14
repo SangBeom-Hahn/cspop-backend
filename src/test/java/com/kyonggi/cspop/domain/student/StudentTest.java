@@ -36,14 +36,14 @@ class StudentTest {
     @DisplayName("학생을 생성한다.")
     void construct() {
         //given
-        LocalDate invalidBirth = now().minusDays(1);
+        LocalDate validBirth = now().minusDays(1);
 
         //then
         Assertions.assertThatThrownBy(() -> new Student(
                 "201811111",
                 "123",
                 "111&!a",
-                invalidBirth,
+                validBirth,
                 Department.AI,
                 Grade.FIRTH,
                 PhoneNumber.from("010-1111-1111"),
