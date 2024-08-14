@@ -21,7 +21,7 @@ class EmailTest {
 
     @ParameterizedTest
     @DisplayName("Email 컴포넌트를 외부에서 팩토리 메서드로 생성한다.")
-    @ValueSource(strings = {"1@naver.com", "a@gmail.com", "*@naver.com"})
+    @ValueSource(strings = {"1@naver.com", "a@gmail.com", "1a@naver.com"})
     void construct (String email) {
         assertDoesNotThrow(() -> Email.from(email));
     }

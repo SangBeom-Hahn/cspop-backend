@@ -21,7 +21,7 @@ class PhoneNumberTest {
 
     @ParameterizedTest
     @DisplayName("PhoneNumber 컴포넌트를 생성한다.")
-    @ValueSource(strings = {"010-1111-1111", "012-1111-1111"})
+    @ValueSource(strings = {"010-1111-1111", "010-1234-1234"})
     void construct(String phoneNumber) {
         assertDoesNotThrow(() -> PhoneNumber.from(phoneNumber));
     }
