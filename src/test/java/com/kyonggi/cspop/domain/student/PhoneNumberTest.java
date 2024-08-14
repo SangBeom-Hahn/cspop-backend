@@ -1,13 +1,11 @@
 package com.kyonggi.cspop.domain.student;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PhoneNumberTest {
 
@@ -21,7 +19,7 @@ class PhoneNumberTest {
 
     @ParameterizedTest
     @DisplayName("PhoneNumber 컴포넌트를 생성한다.")
-    @ValueSource(strings = {"010-1111-1111", "012-1111-1111"})
+    @ValueSource(strings = {"010-1111-1111", "010-1234-1234"})
     void construct(String phoneNumber) {
         assertDoesNotThrow(() -> PhoneNumber.from(phoneNumber));
     }

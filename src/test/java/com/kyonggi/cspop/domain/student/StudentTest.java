@@ -1,13 +1,13 @@
 package com.kyonggi.cspop.domain.student;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static java.time.LocalDate.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.time.LocalDate.now;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class StudentTest {
 
@@ -18,7 +18,7 @@ class StudentTest {
         LocalDate invalidBirth = now().plusDays(1);
 
         //then
-        Assertions.assertThatThrownBy(() -> new Student(
+        assertThatThrownBy(() -> new Student(
                 "201811111",
                 "123",
                 "111&!a",
@@ -39,7 +39,7 @@ class StudentTest {
         LocalDate validBirth = now().minusDays(1);
 
         //then
-        Assertions.assertThatThrownBy(() -> new Student(
+        assertDoesNotThrow(() -> new Student(
                 "201811111",
                 "123",
                 "111&!a",
