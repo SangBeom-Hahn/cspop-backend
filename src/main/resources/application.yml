@@ -3,10 +3,11 @@ spring:
     url: ${SOURCE_MYSQL_URL}
     username: ${SOURCE_MYSQL_USERNAME}
     password: ${SOURCE_MYSQL_PASSWORD}
-    p6spy:
-      enabled: true
-      appender: com.p6spy.engine.spy.appender.Slf4JLogger
 
   jpa:
     hibernate:
       ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
