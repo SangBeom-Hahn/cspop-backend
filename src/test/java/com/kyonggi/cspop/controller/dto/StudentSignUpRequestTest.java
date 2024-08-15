@@ -156,7 +156,7 @@ class StudentSignUpRequestTest extends RequestTest{
 
     @ParameterizedTest
     @NullAndEmptySource
-    @DisplayName("전화번호로 빈 문자열이 들어오면 처리한다.")
+    @DisplayName("학생 이름으로 빈 문자열이 들어오면 처리한다.")
     void blankName(String name) {
         StudentSignUpRequest studentSignUpRequest = new StudentSignUpRequest(
                 "number",
@@ -176,7 +176,7 @@ class StudentSignUpRequestTest extends RequestTest{
 
     @ParameterizedTest
     @NullAndEmptySource
-    @DisplayName("전화번호로 빈 문자열이 들어오면 처리한다.")
+    @DisplayName("이메일로 빈 문자열이 들어오면 처리한다.")
     void blankEmail(String email) {
         StudentSignUpRequest studentSignUpRequest = new StudentSignUpRequest(
                 "number",
@@ -196,7 +196,7 @@ class StudentSignUpRequestTest extends RequestTest{
 
     @ParameterizedTest
     @NullAndEmptySource
-    @DisplayName("전화번호로 빈 문자열이 들어오면 처리한다.")
+    @DisplayName("졸업 분류로 빈 문자열이 들어오면 처리한다.")
     void blankClassification(String classification) {
         StudentSignUpRequest studentSignUpRequest = new StudentSignUpRequest(
                 "number",
@@ -238,7 +238,7 @@ class StudentSignUpRequestTest extends RequestTest{
 
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "1"})
-    @DisplayName("20자 초과 학번이 들어오면 처리한다.")
+    @DisplayName("20자 초과 아이디가 들어오면 처리한다.")
     void invalidLoginIdSize(String loginId) {
         StudentSignUpRequest studentSignUpRequest = new StudentSignUpRequest(
                 "number",
@@ -260,7 +260,7 @@ class StudentSignUpRequestTest extends RequestTest{
 
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaaaaaaaaaaaaaaaaa", "1"})
-    @DisplayName("10자 초과 학번이 들어오면 처리한다.")
+    @DisplayName("10자 초과 학과가 들어오면 처리한다.")
     void invalidDepartmentSize(String department) {
         StudentSignUpRequest studentSignUpRequest = new StudentSignUpRequest(
                 "number",
