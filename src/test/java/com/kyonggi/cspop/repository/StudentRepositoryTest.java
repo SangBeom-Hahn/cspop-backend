@@ -56,23 +56,8 @@ class StudentRepositoryTest extends RepositoryTest{
                 .orElseThrow();
 
         // then
-        assertThat(findStudent).extracting(
-                "id", "number", "loginId", "password", "birth", "department", "grade", "phoneNumber",
-                "name", "email", "classification", "roleType")
-                .containsExactly(
-                        saveId,
-                        "201811111",
-                        "123",
-                        "111&!a",
-                        LocalDate.of(1999, 9, 17),
-                        Department.AI,
-                        Grade.FIRTH,
-                        student.getPhoneNumber(),
-                        "dummy",
-                        student.getEmail(),
-                        Classification.UNDERGRADUATE_STUDENT,
-                        RoleType.STUDENT
-                );
+        assertThat(findStudent).usingRecursiveComparison()
+                .isEqualTo(student);
     }
 
     @Test
