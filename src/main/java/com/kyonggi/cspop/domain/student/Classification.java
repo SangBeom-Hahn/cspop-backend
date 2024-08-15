@@ -2,7 +2,6 @@ package com.kyonggi.cspop.domain.student;
 
 import com.kyonggi.cspop.exception.NoSuchClassificationException;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public enum Classification {

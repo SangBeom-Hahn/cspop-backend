@@ -1,10 +1,11 @@
 package com.kyonggi.cspop.controller.dto.student;
 
 import com.kyonggi.cspop.domain.student.*;
-import com.kyonggi.cspop.domain.student.Email;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpRequestDto;
-import com.kyonggi.cspop.service.dto.student.StudentSignUpResponseDto;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,7 +2,6 @@ package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.repository.RefreshTokenRepository;
 import com.kyonggi.cspop.repository.StudentRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;

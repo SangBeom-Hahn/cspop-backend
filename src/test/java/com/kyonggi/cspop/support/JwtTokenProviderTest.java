@@ -22,7 +22,6 @@ import java.util.Map;
 import static com.kyonggi.cspop.domain.student.RoleType.STUDENT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

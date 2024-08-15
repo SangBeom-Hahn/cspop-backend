@@ -5,7 +5,6 @@ import com.kyonggi.cspop.domain.refreshtoken.RefreshToken;
 import com.kyonggi.cspop.domain.student.*;
 import com.kyonggi.cspop.exception.IdPasswordMismatchException;
 import com.kyonggi.cspop.exception.NoSuchStudentException;
-import com.kyonggi.cspop.exception.NoSuchStudentIdException;
 import com.kyonggi.cspop.service.dto.student.TokenResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,5 @@
 package com.kyonggi.cspop.controller.dto.student;
 
-import com.kyonggi.cspop.controller.dto.ValidateMessage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
