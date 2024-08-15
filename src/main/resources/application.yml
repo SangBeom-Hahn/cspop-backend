@@ -3,14 +3,17 @@ spring:
     url: ${SOURCE_MYSQL_URL}
     username: ${SOURCE_MYSQL_USERNAME}
     password: ${SOURCE_MYSQL_PASSWORD}
-
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         format_sql: false
         show_sql: false
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:sql/init.sql, classpath:sql/data.sql
 
 jwt:
   token:
