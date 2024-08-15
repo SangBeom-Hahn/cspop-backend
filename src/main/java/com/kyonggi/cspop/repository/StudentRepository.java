@@ -4,4 +4,8 @@ import com.kyonggi.cspop.domain.student.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
+
+    boolean existsByNumber(String number);
+
+    boolean existsByLoginId(String loginId);
 }

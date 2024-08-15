@@ -38,7 +38,7 @@ class StudentRepositoryTest extends RepositoryTest{
         Student saveStudent = studentRepository.save(student);
 
         // then
-        Assertions.assertAll(
+        assertAll(
                 () -> assertThat(saveStudent.getId()).isNotNull(),
                 () -> assertThat(saveStudent).isEqualTo(student)
         );
@@ -87,5 +87,18 @@ class StudentRepositoryTest extends RepositoryTest{
 
         // then
         assertThat(studentRepository.findById(saveId)).isEmpty();
+    }
+
+    @Test
+    @DisplayName("이미 존재하는 아이디, 학번인지 검사한다.")
+    void checkExist() {
+        // given
+        studentRepository.save(student);
+
+        // then
+        assertAll(
+                () -> assertThat(studentRepository.existsByLoginId("123")).isTrue(),
+                () -> assertThat(studentRepository.existsByNumber("201811111")).isTrue()
+        );
     }
 }
