@@ -1,12 +1,14 @@
 package com.kyonggi.cspop.repository;
 
 import com.kyonggi.cspop.domain.student.*;
+import com.kyonggi.cspop.exception.NoSuchMemberException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +31,19 @@ class StudentRepositoryTest extends RepositoryTest{
                 Email.from("1@naver.com"),
                 Classification.UNDERGRADUATE_STUDENT
         );
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 아이디는 예외가 발생한다.")
+    void throwException_noSuchMember() {
+        // given
+        String notExistedId = "******";
+
+        // when
+        Optional<Student> findStudent = studentRepository.findByLoginId(notExistedId);
+
+        // then
+        assertThat(findStudent).isEmpty();
     }
     
     @Test
@@ -85,5 +100,19 @@ class StudentRepositoryTest extends RepositoryTest{
                 () -> assertThat(studentRepository.existsByLoginId("123")).isTrue(),
                 () -> assertThat(studentRepository.existsByNumber("201811111")).isTrue()
         );
+    }
+
+    @Test
+    @DisplayName("아이디로 회원을 찾는다.")
+    void findByLoginId() {
+        // given
+        studentRepository.save(student);
+
+        // when
+        Student findStudent = studentRepository.findByLoginId(student.getLoginId())
+                .orElseThrow();
+
+        // then
+        assertThat(findStudent).isEqualTo(student);
     }
 }
