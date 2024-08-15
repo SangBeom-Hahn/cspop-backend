@@ -18,7 +18,7 @@ public class TestDataInit {
         Student student = new Student(
                 "201811111",
                 "123",
-                "111&!a",
+                "$2a$10$tjNt0LH5iFzk1X0sxtTS5eA6cSLkZ1NGw8IIqQL4h.pnxx.vCD/GK",
                 LocalDate.of(1999, 9, 17),
                 Department.AI,
                 Grade.FIRTH,
