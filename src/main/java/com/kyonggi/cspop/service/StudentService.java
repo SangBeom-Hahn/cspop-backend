@@ -51,7 +51,7 @@ public class StudentService {
         }
     }
 
-    private void validateLoginId(String loginId) {
+    public void validateLoginId(String loginId) {
         if (studentRepository.existsByLoginId(loginId)) {
             throw new IllegalArgumentException();
         }

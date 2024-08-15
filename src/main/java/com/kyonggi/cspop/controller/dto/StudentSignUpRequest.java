@@ -1,5 +1,9 @@
 package com.kyonggi.cspop.controller.dto;
 
+import com.kyonggi.cspop.domain.student.*;
+import com.kyonggi.cspop.domain.student.Email;
+import com.kyonggi.cspop.service.dto.student.StudentSignUpRequestDto;
+import com.kyonggi.cspop.service.dto.student.StudentSignUpResponseDto;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,4 +56,19 @@ public class StudentSignUpRequest {
     @NotBlank(message = EMPTY_MESSAGE)
     @Size(min = SIGN_UP_MIN_SIZE, max = SIGN_UP_MAX_SIZE, message = CLASSIFICATION_SIZE_MESSAGE)
     private String classification;
+
+    public StudentSignUpRequestDto toServiceDto() {
+        return new StudentSignUpRequestDto(
+                number,
+                loginId,
+                password,
+                birth,
+                Department.from(department),
+                Grade.from(grade),
+                PhoneNumber.from(phoneNumber),
+                name,
+                Email.from(email),
+                Classification.from(classification)
+        );
+    }
 }
