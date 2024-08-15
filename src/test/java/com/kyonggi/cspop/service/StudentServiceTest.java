@@ -111,7 +111,7 @@ class StudentServiceTest extends ServiceTest {
     private StudentSignUpRequestDto createDuplicateSignUpRequestDto() {
         return new StudentSignUpRequestDto(
                 "201811111",
-                "123",
+                "125",
                 "111&!a",
                 LocalDate.of(1999, 9, 17),
                 Department.AI,

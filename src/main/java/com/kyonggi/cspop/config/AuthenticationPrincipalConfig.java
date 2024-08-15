@@ -23,7 +23,9 @@ public class AuthenticationPrincipalConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/students")
-                .excludePathPatterns("/api/students/validate-duplicate");
+                .excludePathPatterns("/api/students/validate-duplicate")
+                .excludePathPatterns("/api/login")
+                .excludePathPatterns("/api/logout");
     }
 
     @Override
