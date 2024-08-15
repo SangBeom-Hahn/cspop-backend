@@ -1,7 +1,7 @@
 package com.kyonggi.cspop.controller;
 
-import com.kyonggi.cspop.controller.dto.StudentCheckDuplicateIdRequest;
-import com.kyonggi.cspop.controller.dto.StudentSignUpRequest;
+import com.kyonggi.cspop.controller.dto.student.StudentCheckDuplicateIdRequest;
+import com.kyonggi.cspop.controller.dto.student.StudentSignUpRequest;
 import com.kyonggi.cspop.service.StudentService;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpResponseDto;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.kyonggi.cspop.controller.dto;
+package com.kyonggi.cspop.controller.dto.student;
 
 import com.kyonggi.cspop.domain.student.*;
 import com.kyonggi.cspop.domain.student.Email;
