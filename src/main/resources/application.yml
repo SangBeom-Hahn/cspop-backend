@@ -12,8 +12,7 @@ spring:
         format_sql: false
         show_sql: false
 
-security:
-  jwt:
-    token:
-      secret-key: ${JWT_SECRET_KEY}
-      expire-length: 3600000
+jwt:
+  token:
+    secret-key: ${JWT_SECRET_KEY}
+    expire-length: 3600000
