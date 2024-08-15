@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.WrongEmailPatternException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -31,7 +32,7 @@ public class Email {
     private static void validatePattern(String value) {
         Matcher matcher = EMAIL_PATTERN.matcher(value);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new WrongEmailPatternException(value);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NoSuchDepartmentException;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -21,6 +22,6 @@ public enum Department {
         return Arrays.stream(values())
                 .filter(department -> department.name.equals(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoSuchDepartmentException(name));
     }
 }

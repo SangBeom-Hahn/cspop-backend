@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NoSuchDepartmentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,8 @@ class DepartmentTest {
 
         // then
         assertThatThrownBy(() -> Department.from(invalidValue))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchDepartmentException.class)
+                .hasMessage(String.format("존재 하지 않는 학과입니다. 학과 = {%s}", invalidValue));
     }
 
     @ParameterizedTest

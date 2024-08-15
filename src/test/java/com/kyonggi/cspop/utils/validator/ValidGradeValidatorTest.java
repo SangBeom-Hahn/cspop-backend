@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class ValidGradeValidatorTest {
+
     private ValidGradeValidator validator;
 
     private ConstraintValidatorContext context;

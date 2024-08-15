@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.domain.student;
 
 import com.kyonggi.cspop.domain.BaseEntity;
+import com.kyonggi.cspop.exception.NotReachedBirthException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -85,7 +86,7 @@ public class Student extends BaseEntity {
 
     private static void validateLimitBirthDate(LocalDate birth) {
         if (isNotReached(birth)) {
-            throw new IllegalArgumentException();
+            throw new NotReachedBirthException(birth.toString());
         }
     }
 

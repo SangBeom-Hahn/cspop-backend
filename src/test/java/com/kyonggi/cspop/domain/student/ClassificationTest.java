@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NoSuchClassificationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,8 @@ class ClassificationTest {
 
         // then
         assertThatThrownBy(() -> Classification.from(invalidValue))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchClassificationException.class)
+                .hasMessage(String.format("존재하지 않은 학년 분류입니다. 분류 = {%s}", invalidValue));
     }
 
     @ParameterizedTest

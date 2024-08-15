@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NotReachedBirthException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,9 @@ class StudentTest {
                 "dummy",
                 Email.from("1@naver.com"),
                 Classification.UNDERGRADUATE_STUDENT
-        ));
+        ))
+                .isInstanceOf(NotReachedBirthException.class)
+                .hasMessage(String.format("생년월일은 현재 시점보다 늦을 수 없습니다. 생년월일 = {%s}", invalidBirth));
     }
 
     @Test

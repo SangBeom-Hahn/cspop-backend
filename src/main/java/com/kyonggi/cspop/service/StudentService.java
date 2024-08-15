@@ -1,6 +1,8 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.domain.student.Student;
+import com.kyonggi.cspop.exception.DuplicateLoginIdException;
+import com.kyonggi.cspop.exception.DuplicateStudentNumberException;
 import com.kyonggi.cspop.repository.StudentRepository;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpRequestDto;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpResponseDto;
@@ -47,13 +49,13 @@ public class StudentService {
 
     private void validateNumber(String number) {
         if (studentRepository.existsByNumber(number)) {
-            throw new IllegalArgumentException();
+            throw new DuplicateStudentNumberException(number);
         }
     }
 
     public void validateLoginId(String loginId) {
         if (studentRepository.existsByLoginId(loginId)) {
-            throw new IllegalArgumentException();
+            throw new DuplicateLoginIdException(loginId);
         }
     }
 }

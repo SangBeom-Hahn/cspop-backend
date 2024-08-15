@@ -1,6 +1,8 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.domain.student.*;
+import com.kyonggi.cspop.exception.DuplicateLoginIdException;
+import com.kyonggi.cspop.exception.DuplicateStudentNumberException;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpRequestDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +45,8 @@ class StudentServiceTest extends ServiceTest {
 
         // then
         assertThatThrownBy(() -> studentService.saveStudent(signUpRequestDto))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(DuplicateLoginIdException.class)
+                .hasMessage(String.format("이미 존재하는 ID입니다. ID = {%s}", signUpRequestDto.getLoginId()));
     }
 
     @Test
@@ -54,7 +57,8 @@ class StudentServiceTest extends ServiceTest {
 
         // then
         assertThatThrownBy(() -> studentService.saveStudent(signUpRequestDto))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(DuplicateLoginIdException.class)
+                .hasMessage(String.format("이미 존재하는 ID입니다. ID = {%s}", signUpRequestDto.getLoginId()));
     }
 
     @Test

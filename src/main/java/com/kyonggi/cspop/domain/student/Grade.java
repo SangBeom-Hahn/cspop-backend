@@ -1,5 +1,7 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NoSuchGradeException;
+
 import java.util.Arrays;
 
 public enum Grade {
@@ -19,6 +21,6 @@ public enum Grade {
         return Arrays.stream(values())
                 .filter(grade -> grade.value.equals(value))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoSuchGradeException(value));
     }
 }

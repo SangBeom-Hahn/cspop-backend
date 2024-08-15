@@ -1,5 +1,7 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.NoSuchClassificationException;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -20,6 +22,6 @@ public enum Classification {
         return Arrays.stream(values())
                 .filter(classification -> classification.desc.equals(desc))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new NoSuchClassificationException(desc));
     }
 }

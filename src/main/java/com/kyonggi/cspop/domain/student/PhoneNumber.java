@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.WrongPhoneNumberPatternException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -31,7 +32,7 @@ public class PhoneNumber {
     private static void validatePattern(String value) {
         Matcher matcher = PHONE_PATTERN.matcher(value);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new WrongPhoneNumberPatternException(value);
         }
     }
 }
