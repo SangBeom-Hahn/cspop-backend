@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "refresh_token")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RefreshToken {
+
     private static final int EXPIRED_DAYS = 7;
 
     @Id

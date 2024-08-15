@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.service;
 
+import com.kyonggi.cspop.repository.RefreshTokenRepository;
 import com.kyonggi.cspop.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public abstract class ServiceTest {
 
     @Autowired
     protected StudentRepository studentRepository;
+
+    @Autowired
+    protected RefreshTokenRepository refreshTokenRepository;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;

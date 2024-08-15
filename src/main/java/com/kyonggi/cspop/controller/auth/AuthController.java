@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.controller.auth;
 
 import com.kyonggi.cspop.controller.dto.student.StudentLoginRequest;
+import com.kyonggi.cspop.controller.dto.student.StudentLogoutRequest;
 import com.kyonggi.cspop.service.AuthService;
 import com.kyonggi.cspop.service.dto.student.TokenResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class AuthController {
     public ResponseEntity<TokenResponseDto> login(@RequestBody @Validated StudentLoginRequest studentLoginRequest) {
         TokenResponseDto tokenResponseDto = authService.login(studentLoginRequest.getLoginId(), studentLoginRequest.getPassword());
         return ResponseEntity.ok(tokenResponseDto);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestBody @Validated StudentLogoutRequest studentLogoutRequest) {
+        authService.logout(studentLogoutRequest.getRefreshToken());
+        return ResponseEntity.noContent().build();
     }
 }

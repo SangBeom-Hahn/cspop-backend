@@ -13,11 +13,13 @@ import com.kyonggi.cspop.support.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -61,5 +63,9 @@ public class AuthService {
 
         final RefreshToken refreshToken = RefreshToken.createBy(findStudent.getId(), () -> UUID.randomUUID().toString());
         return refreshTokenRepository.save(refreshToken);
+    }
+
+    public void logout(final String refreshToken) {
+        refreshTokenRepository.deleteByTokenValue(refreshToken);
     }
 }

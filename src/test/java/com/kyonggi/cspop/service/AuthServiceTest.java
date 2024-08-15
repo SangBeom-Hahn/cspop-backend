@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.controller.dto.student.StudentLoginRequest;
+import com.kyonggi.cspop.domain.refreshtoken.RefreshToken;
 import com.kyonggi.cspop.domain.student.*;
 import com.kyonggi.cspop.exception.IdPasswordMismatchException;
 import com.kyonggi.cspop.exception.NoSuchStudentException;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -75,5 +77,21 @@ class AuthServiceTest extends ServiceTest {
 
         // then
         assertThat(tokenResponseDto).isNotNull();
+    }
+
+    @Test
+    @DisplayName("리프레시 토큰을 무효화한다.")
+    void logout() {
+        // given
+        final RefreshToken refreshToken = RefreshToken.createBy(student.getId(), () -> "refreshToken");
+
+        // when
+        refreshTokenRepository.save(refreshToken);
+        refreshTokenRepository.deleteByTokenValue(refreshToken.getTokenValue());
+        final Optional<RefreshToken> findRefreshToken =
+                refreshTokenRepository.findByTokenValue(refreshToken.getTokenValue());
+
+        // then
+        assertThat(findRefreshToken).isEmpty();
     }
 }
