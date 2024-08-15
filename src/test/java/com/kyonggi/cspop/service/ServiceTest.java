@@ -15,6 +15,9 @@ public abstract class ServiceTest {
     protected StudentService studentService;
 
     @Autowired
+    protected AuthService authService;
+
+    @Autowired
     protected StudentRepository studentRepository;
 
     @Autowired
