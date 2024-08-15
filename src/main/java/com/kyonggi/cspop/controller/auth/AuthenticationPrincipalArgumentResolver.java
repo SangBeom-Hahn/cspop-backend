@@ -1,6 +1,6 @@
 package com.kyonggi.cspop.controller.auth;
 
-import com.kyonggi.cspop.controller.dto.student.LoginMemberRequest;
+import com.kyonggi.cspop.controller.dto.student.LoginStudentRequest;
 import com.kyonggi.cspop.support.AuthorizationExtractor;
 import com.kyonggi.cspop.support.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +30,6 @@ public class AuthenticationPrincipalArgumentResolver implements HandlerMethodArg
         final String token = AuthorizationExtractor.extract(request);
         final String id = jwtTokenProvider.getPayload(token);
 
-        return new LoginMemberRequest(Long.valueOf(id));
+        return new LoginStudentRequest(Long.valueOf(id));
     }
 }

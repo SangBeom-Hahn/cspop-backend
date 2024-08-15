@@ -5,6 +5,7 @@ import com.kyonggi.cspop.domain.student.Email;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpRequestDto;
 import com.kyonggi.cspop.service.dto.student.StudentSignUpResponseDto;
 import jakarta.validation.constraints.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,8 @@ import java.time.LocalDate;
 import static com.kyonggi.cspop.controller.dto.ValidateMessage.*;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class StudentSignUpRequest {
 
     @NotBlank(message = EMPTY_MESSAGE)

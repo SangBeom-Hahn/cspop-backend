@@ -1,8 +1,6 @@
 package com.kyonggi.cspop.repository;
 
 import com.kyonggi.cspop.domain.student.*;
-import com.kyonggi.cspop.exception.NoSuchMemberException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -23,7 +23,7 @@ class StudentServiceTest extends ServiceTest {
     void setUp() {
         student = new Student(
                 "201811111",
-                "123",
+                "125",
                 "111&!a",
                 LocalDate.of(1999, 9, 17),
                 Department.AI,
