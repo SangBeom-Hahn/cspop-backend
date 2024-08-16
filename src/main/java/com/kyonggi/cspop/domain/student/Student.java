@@ -1,5 +1,7 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.domain.BaseEntity;
+import com.kyonggi.cspop.exception.NotReachedBirthException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,9 +15,9 @@ import static com.kyonggi.cspop.domain.student.RoleType.STUDENT;
 @Entity
 @Table(name = "student")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Student {
+public class Student extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "student_id")
     private Long id;
 
@@ -25,7 +27,7 @@ public class Student {
     @Column(name = "login_id", nullable = false, length = 20)
     private String loginId;
 
-    @Column(name = "password", nullable = false, length = 20)
+    @Column(name = "password", nullable = false, length = 60)
     private String password;
 
     @Column(name = "birth", nullable = false)
@@ -83,8 +85,12 @@ public class Student {
     }
 
     private static void validateLimitBirthDate(LocalDate birth) {
-        if (birth.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException();
+        if (isNotReached(birth)) {
+            throw new NotReachedBirthException(birth.toString());
         }
+    }
+
+    private static boolean isNotReached(LocalDate birth) {
+        return birth.isAfter(LocalDate.now());
     }
 }

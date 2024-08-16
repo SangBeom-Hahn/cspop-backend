@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.WrongPhoneNumberPatternException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,8 @@ class PhoneNumberTest {
     @ValueSource(strings = {"0-0-0", "010-23333333", "0102313-3123", "0101313122"})
     void throwException_invalidPattern(String phoneNumber) {
         assertThatThrownBy(() -> PhoneNumber.from(phoneNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(WrongPhoneNumberPatternException.class)
+                .hasMessage(String.format("올바르지 않은 패턴입니다. 번호 = {%s}", phoneNumber));
     }
 
     @ParameterizedTest

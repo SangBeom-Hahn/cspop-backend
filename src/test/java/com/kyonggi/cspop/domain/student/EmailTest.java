@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.exception.WrongEmailPatternException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,8 @@ class EmailTest {
     @ValueSource(strings = {"q", "1231", "32r21@na", "2342naver.com"})
     void throwException_inValidPattern(String email) {
         assertThatThrownBy(() -> Email.from(email))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(WrongEmailPatternException.class)
+                .hasMessage(String.format("올바르지 않은 이메일 패턴입니다. 이메일 = {%s}", email));
     }
 
     @ParameterizedTest
