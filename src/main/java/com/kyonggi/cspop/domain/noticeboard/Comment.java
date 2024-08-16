@@ -42,6 +42,7 @@ public class Comment extends BaseEntity {
         this.writeDate = LocalDateTime.now();
         this.student = student;
         this.noticeBoard = noticeBoard;
+        this.noticeBoard.addComment(this);
     }
 
     public void changeContent(String content) {

@@ -5,6 +5,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static java.time.LocalDate.now;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,8 +28,6 @@ class NoticeBoardTest {
         assertThat(noticeBoard.getContent())
                 .isEqualTo(changeContent);
     }
-
-
 
     @Test
     @DisplayName("제목을 수정한다.")
@@ -110,6 +110,47 @@ class NoticeBoardTest {
     @DisplayName("공지사항을 생성한다.")
     void construct() {
         assertDoesNotThrow(() -> createNoticeBoard());
+    }
+
+    @Test
+    @DisplayName("댓글을 추가한다.")
+    void addComment() {
+        // given
+        Student author = new Student(
+                "201811111",
+                "123",
+                "111&!a",
+                now().minusDays(1),
+                Department.AI,
+                Grade.FIRTH,
+                PhoneNumber.from("010-1111-1111"),
+                "dummy",
+                Email.from("1@naver.com"),
+                Classification.UNDERGRADUATE_STUDENT
+        );
+
+        NoticeBoard noticeBoard = new NoticeBoard(
+                "content",
+                false,
+                "title",
+                1,
+                author
+        );
+        Comment comment1 = new Comment(
+                "content",
+                author,
+                noticeBoard
+        );
+        Comment comment2 = new Comment(
+                "content",
+                author,
+                noticeBoard
+        );
+        List<Comment> expected = List.of(comment1, comment2);
+
+        // then
+        assertThat(noticeBoard.getComments()).usingRecursiveAssertion()
+                .isEqualTo(expected);
     }
 
     private NoticeBoard createNoticeBoard() {

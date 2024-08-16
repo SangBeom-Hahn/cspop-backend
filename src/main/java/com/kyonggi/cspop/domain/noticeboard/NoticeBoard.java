@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.lang.annotation.Target;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -39,6 +41,9 @@ public class NoticeBoard extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_notice_board_student"), nullable = false)
     private Student author;
+
+    @OneToMany(mappedBy = "noticeBoard", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public NoticeBoard(
             String content,
@@ -73,5 +78,9 @@ public class NoticeBoard extends BaseEntity {
 
     public boolean isAuthor(Long id) {
         return this.author.isSame(id);
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 }
