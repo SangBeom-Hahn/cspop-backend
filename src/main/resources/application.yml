@@ -10,6 +10,7 @@ spring:
       hibernate:
         format_sql: false
         show_sql: false
+        default_batch_fetch_size: 500
   sql:
     init:
       mode: always
