@@ -52,4 +52,9 @@ public class Comment extends BaseEntity {
     public boolean isAuthor(Long id) {
         return this.student.isSame(id);
     }
+
+    public String getLoginId() {
+        return this.student
+                .getLoginId();
+    }
 }

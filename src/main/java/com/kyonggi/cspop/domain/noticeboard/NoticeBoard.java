@@ -83,4 +83,8 @@ public class NoticeBoard extends BaseEntity {
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
+
+    public String getAuthorLoginId() {
+        return this.author.getLoginId();
+    }
 }
