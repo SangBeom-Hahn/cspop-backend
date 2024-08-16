@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.refreshtoken;
 
+import com.kyonggi.cspop.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Table(name = "refresh_token")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RefreshToken {
+public class RefreshToken extends BaseEntity {
 
     private static final int EXPIRED_DAYS = 7;
 
