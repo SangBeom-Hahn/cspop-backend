@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.controller.dto.PageInfo;
+import com.kyonggi.cspop.domain.noticeboard.Comment;
 import com.kyonggi.cspop.domain.noticeboard.NoticeBoard;
 import com.kyonggi.cspop.domain.student.Student;
 import com.kyonggi.cspop.exception.InvalidAuthorException;
@@ -40,22 +41,23 @@ public class NoticeBoardService {
         return NoticeBoardSaveResponseDto.from(saveId);
     }
 
+    @Transactional(readOnly = true)
     public NoticeBoardReadResponseDto findNoticeBoard(Long noticeBoardId) {
         NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeBoardId)
                 .orElseThrow(() -> new NoSuchNoticeException(noticeBoardId));
         noticeBoard.changeView();
 
-        List<CommentResponseDto> commentResponseDtos = findCommentResponseDtos(noticeBoard);
+        List<CommentResponseDto> commentResponseDtos = findCommentResponseDtos(noticeBoard.getComments());
         return NoticeBoardReadResponseDto.of(noticeBoard, commentResponseDtos);
     }
 
-    private static List<CommentResponseDto> findCommentResponseDtos(NoticeBoard noticeBoard) {
-        return noticeBoard.getComments()
-                .stream()
+    private static List<CommentResponseDto> findCommentResponseDtos(List<Comment> comments) {
+        return comments.stream()
                 .map(CommentResponseDto::from)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public NoticeBoardsResponseDto findAllNoticeBoard(Integer page, int count) {
         PageRequest pageRequest = PageRequest.of(page, count);
         Page<NoticeBoard> noticeBoards = noticeBoardRepository.findAllByOrderByIdDesc(pageRequest);
