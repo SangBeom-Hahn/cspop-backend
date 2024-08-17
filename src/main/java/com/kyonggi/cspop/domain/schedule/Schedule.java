@@ -3,6 +3,7 @@ package com.kyonggi.cspop.domain.schedule;
 import com.kyonggi.cspop.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,6 +36,13 @@ public class Schedule extends BaseEntity {
     private LocalDate endDate;
 
     public Schedule(LocalDate startDate, LocalDate endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public Schedule(Step step, Status status, LocalDate startDate, LocalDate endDate) {
+        this.step = step;
+        this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
     }
