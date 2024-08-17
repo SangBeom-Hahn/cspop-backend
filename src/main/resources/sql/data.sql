@@ -21,9 +21,33 @@ insert into comment
 values ('content1',NOW(),NOW(),1,1,NOW());
 
 insert into comment
-(content, created_date, last_modified_date, notice_board_id, student_id, write_date)
+    (content, created_date, last_modified_date, notice_board_id, student_id, write_date)
 values ('content2',NOW(),NOW(),1,1,NOW());
 
 insert into comment
-(content, created_date, last_modified_date, notice_board_id, student_id, write_date)
+    (content, created_date, last_modified_date, notice_board_id, student_id, write_date)
 values ('content3',NOW(),NOW(),1,1,NOW());
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-04-12',NOW(),'2024-03-07','FINISH','RECEIVE');
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-05-13',NOW(),'2024-04-12','FINISH','PROPOSAL');
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-06-18',NOW(),'2024-05-13','FINISH','MIDDLE');
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-06-18',NOW(),'2024-05-13','FINISH','FINAL');
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-06-21',NOW(),'2024-05-13','FINISH','OTHER_QUALIFICATION');
+
+insert into schedule
+    (created_date,end_date,last_modified_date,start_date,status,step)
+values (NOW(),'2024-08-14',NOW(),'2024-06-14','FINISH','PASS');
