@@ -4,6 +4,7 @@ import com.kyonggi.cspop.domain.BaseEntity;
 import com.kyonggi.cspop.exception.NotReachedBirthException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import static com.kyonggi.cspop.domain.student.RoleType.STUDENT;
 @Getter
 @Entity
 @Table(name = "student")
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Student extends BaseEntity {
 
@@ -92,5 +94,9 @@ public class Student extends BaseEntity {
 
     private static boolean isNotReached(LocalDate birth) {
         return birth.isAfter(LocalDate.now());
+    }
+
+    public boolean isSame(Long id) {
+        return this.id.equals(id);
     }
 }
