@@ -1,5 +1,7 @@
-DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS refresh_token;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS notice_board;
+DROP TABLE IF EXISTS student;
 
 create table student
 (
@@ -26,7 +28,48 @@ create table refresh_token
     `expired_time` datetime(6),
     `member_id` bigint not null,
     `token_value` varchar(255) not null,
+    `created_date` datetime(6) not null,
+    `last_modified_date` datetime(6) not null,
     primary key (`refresh_token_id`)
 ) engine=InnoDB;
 
+create table comment
+(
+    comment_id bigint not null auto_increment,
+    created_date datetime(6) not null,
+    last_modified_date datetime(6) not null,
+    notice_board_id bigint not null,
+    student_id bigint not null,
+    write_date datetime(6) not null,
+    content varchar(100) not null,
+    primary key (comment_id)
+) engine=InnoDB;
 
+create table notice_board
+(
+    notice_board_id bigint not null auto_increment,
+    fix boolean not null,
+    views integer not null,
+    created_date datetime(6) not null,
+    last_modified_date datetime(6) not null,
+    student_id bigint not null,
+    write_date datetime(6) not null,
+    title varchar(20) not null,
+    content varchar(5000) not null,
+    primary key (notice_board_id)
+) engine=InnoDB;
+
+alter table comment
+    add constraint fk_comment_notice_board
+    foreign key (notice_board_id)
+    references notice_board (notice_board_id);
+
+alter table comment
+    add constraint fk_comment_student
+    foreign key (student_id)
+    references student (student_id);
+
+alter table notice_board
+    add constraint fk_notice_board_student
+    foreign key (student_id)
+    references student (student_id);

@@ -41,7 +41,7 @@ public class NoticeBoardService {
         return NoticeBoardSaveResponseDto.from(saveId);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public NoticeBoardReadResponseDto findNoticeBoard(Long noticeBoardId) {
         NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeBoardId)
                 .orElseThrow(() -> new NoSuchNoticeException(noticeBoardId));
