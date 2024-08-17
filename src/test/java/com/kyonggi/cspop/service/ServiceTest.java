@@ -20,6 +20,9 @@ public abstract class ServiceTest {
     protected AuthService authService;
 
     @Autowired
+    protected CommentService commentService;
+
+    @Autowired
     protected NoticeBoardService noticeBoardService;
 
     @Autowired
