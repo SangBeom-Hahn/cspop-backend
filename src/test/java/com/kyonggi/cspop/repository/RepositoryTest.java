@@ -20,4 +20,7 @@ public abstract class RepositoryTest {
 
     @Autowired
     protected ScheduleRepository scheduleRepository;
+
+    @Autowired
+    protected ScheduleBoardRepository scheduleBoardRepository;
 }
