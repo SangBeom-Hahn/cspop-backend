@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS final_form;
+DROP TABLE IF EXISTS middle_form;
+DROP TABLE IF EXISTS proposal;
+DROP TABLE IF EXISTS submit;
+DROP TABLE IF EXISTS graduation;
 DROP TABLE IF EXISTS refresh_token;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS notice_board;
@@ -75,7 +80,7 @@ create table schedule
 
 create table schedule_board
 (
-    schedule_board_id bigint auto_increment,
+    schedule_board_id bigint not null auto_increment,
     final_report text not null,
     middle_report text not null,
     pass text not null,
@@ -83,6 +88,79 @@ create table schedule_board
     receive text not null,
     other_qualification text not null,
     primary key (schedule_board_id)
+);
+
+create table final_form
+(
+    approve boolean not null,
+    page integer not null,
+    type tinyint not null check (type between 0 and 1),
+    created_date timestamp(6) not null,
+    final_form_id bigint not null auto_increment,
+    last_modified_date timestamp(6) not null,
+    student_id bigint not null unique,
+    qualification varchar(45) not null,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    primary key (final_form_id)
+);
+
+create table graduation
+(
+    capstone_completion boolean,
+    graduate_date date,
+    created_date timestamp(6) not null,
+    id bigint not null auto_increment,
+    last_modified_date timestamp(6) not null,
+    student_id bigint not null unique,
+    professor_name varchar(10),
+    method enum ('OTHER','THESIS'),
+    status enum ('APPROVAL','REJECT','UN_APPROVAL'),
+    step enum ('FINAL','MIDDLE','OTHER_QUALIFICATION','PASS','PROPOSAL','RECEIVE'),
+    primary key (id)
+);
+
+create table middle_form
+(
+    approve boolean not null,
+    type tinyint not null check (type between 0 and 1),
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    middle_form_id bigint not null auto_increment,
+    student_id bigint not null unique,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    plan varchar(500) not null,
+    text varchar(500) not null,
+    primary key (middle_form_id)
+);
+
+create table proposal
+(
+    approve boolean not null,
+    type tinyint not null check (type between 0 and 1),
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    proposal_id bigint not null auto_increment,
+    student_id bigint not null unique,
+    content varchar(45) not null,
+    qualification varchar(45) not null,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    primary key (proposal_id)
+);
+
+create table submit
+(
+    approve boolean not null,
+    capstone_completion boolean,
+    graduate_date date not null,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    submit_id bigint not null auto_increment,
+    professor_name varchar(10) not null,
+    reject_reason varchar(100),
+    primary key (submit_id)
 );
 
 alter table comment
@@ -99,3 +177,23 @@ alter table notice_board
     add constraint fk_notice_board_student
     foreign key (student_id)
     references student (student_id);
+
+alter table final_form
+    add constraint fk_final_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table graduation
+    add constraint fk_graduation_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table middle_form
+    add constraint fk_middle_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table proposal
+    add constraint fk_proposal_student
+        foreign key (student_id)
+            references student (student_id);
