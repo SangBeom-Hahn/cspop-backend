@@ -1,9 +1,6 @@
 package com.kyonggi.cspop.service;
 
-import com.kyonggi.cspop.repository.CommentRepository;
-import com.kyonggi.cspop.repository.NoticeBoardRepository;
-import com.kyonggi.cspop.repository.RefreshTokenRepository;
-import com.kyonggi.cspop.repository.StudentRepository;
+import com.kyonggi.cspop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +20,9 @@ public abstract class ServiceTest {
     protected CommentService commentService;
 
     @Autowired
+    protected ScheduleService scheduleService;
+
+    @Autowired
     protected NoticeBoardService noticeBoardService;
 
     @Autowired
@@ -36,6 +36,12 @@ public abstract class ServiceTest {
 
     @Autowired
     protected CommentRepository commentRepository;
+
+    @Autowired
+    protected ScheduleRepository scheduleRepository;
+
+    @Autowired
+    protected ScheduleBoardRepository scheduleBoardRepository;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;

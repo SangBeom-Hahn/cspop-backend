@@ -17,4 +17,10 @@ public abstract class RepositoryTest {
 
     @Autowired
     protected CommentRepository commentRepository;
+
+    @Autowired
+    protected ScheduleRepository scheduleRepository;
+
+    @Autowired
+    protected ScheduleBoardRepository scheduleBoardRepository;
 }

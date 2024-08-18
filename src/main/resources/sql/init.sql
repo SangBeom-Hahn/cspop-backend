@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS refresh_token;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS notice_board;
 DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS schedule_board;
 
 create table student
 (
@@ -58,6 +60,30 @@ create table notice_board
     content varchar(5000) not null,
     primary key (notice_board_id)
 ) engine=InnoDB;
+
+create table schedule
+(
+    schedule_id bigint not null auto_increment,
+    end_date date not null,
+    start_date date not null,
+    created_date datetime(6) not null,
+    last_modified_date datetime(6) not null,
+    status enum ('FINISH','PROGRESS','WAIT') not null,
+    step enum ('FINAL','MIDDLE','OTHER_QUALIFICATION','PASS','PROPOSAL','RECEIVE') not null,
+    primary key (schedule_id)
+) engine=InnoDB;
+
+create table schedule_board
+(
+    schedule_board_id bigint auto_increment,
+    final_report text not null,
+    middle_report text not null,
+    pass text not null,
+    proposal text not null,
+    receive text not null,
+    other_qualification text not null,
+    primary key (schedule_board_id)
+);
 
 alter table comment
     add constraint fk_comment_notice_board
