@@ -14,7 +14,12 @@ public class SchedulesResponseDto {
 
     private List<ScheduleResponseDto> scheduleResponseDtos;
 
-    public static SchedulesResponseDto from(List<ScheduleResponseDto> scheduleResponseDtos) {
-        return new SchedulesResponseDto(scheduleResponseDtos);
+    private ScheduleBoardResponseDto scheduleBoardResponseDto;
+
+    public static SchedulesResponseDto of(
+            List<ScheduleResponseDto> scheduleResponseDtos,
+            ScheduleBoardResponseDto scheduleBoardResponseDto
+    ) {
+        return new SchedulesResponseDto(scheduleResponseDtos, scheduleBoardResponseDto);
     }
 }

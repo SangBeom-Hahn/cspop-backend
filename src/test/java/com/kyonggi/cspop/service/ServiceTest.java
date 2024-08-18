@@ -41,5 +41,8 @@ public abstract class ServiceTest {
     protected ScheduleRepository scheduleRepository;
 
     @Autowired
+    protected ScheduleBoardRepository scheduleBoardRepository;
+
+    @Autowired
     protected PasswordEncoder passwordEncoder;
 }

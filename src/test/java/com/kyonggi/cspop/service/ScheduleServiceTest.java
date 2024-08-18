@@ -1,14 +1,15 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.controller.dto.schedule.ScheduleUpdateRequest;
+import com.kyonggi.cspop.domain.schedule.Board;
 import com.kyonggi.cspop.domain.schedule.Schedule;
 import com.kyonggi.cspop.domain.schedule.Status;
+import com.kyonggi.cspop.service.dto.schedule.ScheduleBoardResponseDto;
 import com.kyonggi.cspop.service.dto.schedule.ScheduleResponseDto;
 import com.kyonggi.cspop.service.dto.schedule.SchedulesResponseDto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,6 +29,7 @@ class ScheduleServiceTest extends ServiceTest {
     private Schedule schedule5;
     private Schedule schedule6;
     private Schedule schedule7;
+    private Board board;
 
     @BeforeEach
     void setUp() {
@@ -73,6 +75,8 @@ class ScheduleServiceTest extends ServiceTest {
                 LocalDate.now().plusDays(1),
                 LocalDate.now().plusDays(100)
         );
+        board = new Board("receive", "proposal", "middleReport", "finalReport",
+                "pass", "other");
 
         scheduleRepository.save(schedule1);
         scheduleRepository.save(schedule2);
@@ -80,6 +84,7 @@ class ScheduleServiceTest extends ServiceTest {
         scheduleRepository.save(schedule4);
         scheduleRepository.save(schedule5);
         scheduleRepository.save(schedule6);
+        scheduleBoardRepository.save(board);
     }
 
     @Test
@@ -95,9 +100,11 @@ class ScheduleServiceTest extends ServiceTest {
                 ScheduleResponseDto.from(schedule5),
                 ScheduleResponseDto.from(schedule6)
         );
+        ScheduleBoardResponseDto scheduleBoardResponseDto =
+                ScheduleBoardResponseDto.from(board);
 
         // when
-        SchedulesResponseDto expected = SchedulesResponseDto.from(scheduleResponseDtos);
+        SchedulesResponseDto expected = SchedulesResponseDto.of(scheduleResponseDtos, scheduleBoardResponseDto);
 
         // then
         assertThat(actual)
