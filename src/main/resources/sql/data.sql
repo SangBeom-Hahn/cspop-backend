@@ -51,3 +51,7 @@ values (NOW(),'2024-06-21',NOW(),'2024-05-13','FINISH','OTHER_QUALIFICATION');
 insert into schedule
     (created_date,end_date,last_modified_date,start_date,status,step)
 values (NOW(),'2024-08-14',NOW(),'2024-06-14','FINISH','PASS');
+
+insert into schedule_board
+    (final_report, middle_report, other_qualification, pass, proposal, receive, schedule_board_id)
+values ('finalReport','middleReport','other','pass','proposal','receive', 3);

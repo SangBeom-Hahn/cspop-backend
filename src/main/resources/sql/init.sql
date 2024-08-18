@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS notice_board;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS schedule_board;
 
 create table student
 (
@@ -72,6 +73,17 @@ create table schedule
     primary key (schedule_id)
 ) engine=InnoDB;
 
+create table schedule_board
+(
+    schedule_board_id bigint auto_increment,
+    final_report text not null,
+    middle_report text not null,
+    pass text not null,
+    proposal text not null,
+    receive text not null,
+    other_qualification text not null,
+    primary key (schedule_board_id)
+);
 
 alter table comment
     add constraint fk_comment_notice_board
