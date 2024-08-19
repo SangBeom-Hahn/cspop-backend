@@ -160,6 +160,7 @@ create table submit
     submit_id bigint not null auto_increment,
     professor_name varchar(10) not null,
     reject_reason varchar(100),
+    student_id bigint not null unique,
     primary key (submit_id)
 );
 
