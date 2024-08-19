@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.domain.graduate;
 
 import com.kyonggi.cspop.domain.BaseEntity;
+import com.kyonggi.cspop.domain.student.Student;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,9 +21,9 @@ public class Submit extends BaseEntity {
     private Long id;
 
     @Column(name = "professor_name", nullable = false, length = 10)
-    private String Name;
+    private String name;
 
-    @Column(name = "graduate_date", nullable = false)
+    @Column(name = "graduate_date")
     private LocalDate graduateDate;
 
     @Column(name = "capstone_completion")
@@ -34,10 +35,28 @@ public class Submit extends BaseEntity {
     @Column(name = "reject_reason", length = 100)
     private String reason;
 
-    public Submit(String name, LocalDate graduateDate, Boolean completion, Boolean approve) {
-        Name = name;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_final_student"), nullable = false)
+    private Student student;
+
+    public Submit(String name, Student student) {
+        this.name = name;
+        this.student = student;
+    }
+
+    public void changeGraduateDate(LocalDate graduateDate) {
         this.graduateDate = graduateDate;
-        this.completion = completion;
+    }
+
+    public void changeApprove(Boolean approve) {
         this.approve = approve;
+    }
+
+    public void changeCompletion(Boolean completion) {
+        this.completion = completion;
+    }
+
+    public void changeReason(String reason) {
+        this.reason = reason;
     }
 }

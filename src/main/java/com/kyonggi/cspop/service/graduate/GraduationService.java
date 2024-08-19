@@ -39,6 +39,7 @@ public class GraduationService {
         return GraduationSaveResponseDto.from(saveId);
     }
 
+    @Transactional(readOnly = true)
     public GraduationsResponseDto findAllGraduation() {
         List<GraduationListResponseDto> graduationListResponseDtos = graduationRepository.findAll()
                 .stream()
@@ -48,6 +49,7 @@ public class GraduationService {
         return GraduationsResponseDto.from(graduationListResponseDtos);
     }
 
+    @Transactional(readOnly = true)
     public GraduationResponseDto findGraduation(Long studentId) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
