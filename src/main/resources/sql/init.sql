@@ -92,11 +92,11 @@ create table schedule_board
 
 create table final_form
 (
+    final_form_id bigint not null auto_increment,
     approve boolean not null,
     page integer not null,
     type tinyint not null check (type between 0 and 1),
     created_date timestamp(6) not null,
-    final_form_id bigint not null auto_increment,
     last_modified_date timestamp(6) not null,
     student_id bigint not null unique,
     qualification varchar(45) not null,
@@ -107,17 +107,17 @@ create table final_form
 
 create table graduation
 (
+    graduation_id bigint not null auto_increment,
     capstone_completion boolean,
     graduate_date date,
     created_date timestamp(6) not null,
-    id bigint not null auto_increment,
     last_modified_date timestamp(6) not null,
     student_id bigint not null unique,
     professor_name varchar(10),
     method enum ('OTHER','THESIS'),
     status enum ('APPROVAL','REJECT','UN_APPROVAL'),
     step enum ('FINAL','MIDDLE','OTHER_QUALIFICATION','PASS','PROPOSAL','RECEIVE'),
-    primary key (id)
+    primary key (graduation_id)
 );
 
 create table middle_form

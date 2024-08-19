@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Graduation extends BaseEntity {
 
+    @Column(name = "graduation_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
