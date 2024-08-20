@@ -4,12 +4,15 @@ import com.kyonggi.cspop.domain.BaseEntity;
 
 import com.kyonggi.cspop.domain.schedule.Step;
 import com.kyonggi.cspop.domain.student.Student;
+import com.kyonggi.cspop.exception.NotReachedGraduationException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
+import static java.time.LocalDate.now;
 
 @Entity
 @Getter
@@ -55,6 +58,7 @@ public class Graduation extends BaseEntity {
             String professorName,
             Student student
     ) {
+        validateDate(date);
         this.method = method;
         this.status = status;
         this.step = step;
@@ -64,11 +68,25 @@ public class Graduation extends BaseEntity {
         this.student = student;
     }
 
+    private static void validateDate(LocalDate date) {
+        if (date.isBefore(now())) {
+            throw new NotReachedGraduationException(date.toString());
+        }
+    }
+
     public void changeStatus(Status status) {
         this.status = status;
     }
 
     public void changeStep(Step step) {
         this.step = step;
+    }
+
+    public void changeDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void changeProfessorName(String professorName) {
+        this.professorName = professorName;
     }
 }

@@ -29,7 +29,7 @@ public class Submit extends BaseEntity {
     @Column(name = "capstone_completion")
     private Boolean completion;
 
-    @Column(name = "approve", nullable = false)
+    @Column(name = "approve")
     private Boolean approve;
 
     @Column(name = "reject_reason", length = 100)

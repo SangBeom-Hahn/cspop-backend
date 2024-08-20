@@ -24,13 +24,12 @@ public class Middle extends BaseEntity {
     private String title;
 
     @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Type type;
 
-    // text
     @Column(name = "text", nullable = false, length = 500)
     private String text;
 
-    // plan
     @Column(name = "plan", nullable = false, length = 500)
     private String plan;
 
@@ -41,12 +40,19 @@ public class Middle extends BaseEntity {
     @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_middle_student"), nullable = false)
     private Student student;
 
-    public Middle(Boolean approve, String title, Type type, String text, String plan, Student student) {
-        this.approve = approve;
+    public Middle(String title, Type type, String text, String plan, Student student) {
         this.title = title;
         this.type = type;
         this.text = text;
         this.plan = plan;
         this.student = student;
+    }
+
+    public void changeApprove(Boolean approve) {
+        this.approve = approve;
+    }
+
+    public void changeReason(String reason) {
+        this.reason = reason;
     }
 }

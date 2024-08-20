@@ -17,13 +17,14 @@ public class Proposal extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "approve", nullable = false)
+    @Column(name = "approve")
     private Boolean approve;
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
     @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     @Column(name = "qualification", nullable = false, length = 45)
@@ -39,12 +40,19 @@ public class Proposal extends BaseEntity {
     @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_proposal_student"), nullable = false)
     private Student student;
 
-    public Proposal(Boolean approve, String title, Type type, String qualification, String content, Student student) {
-        this.approve = approve;
+    public Proposal(String title, Type type, String qualification, String content, Student student) {
         this.title = title;
         this.type = type;
         this.qualification = qualification;
         this.content = content;
         this.student = student;
+    }
+
+    public void changeApprove(Boolean approve) {
+        this.approve = approve;
+    }
+
+    public void changeReason(String reason) {
+        this.reason = reason;
     }
 }

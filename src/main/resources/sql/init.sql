@@ -93,9 +93,9 @@ create table schedule_board
 create table final_form
 (
     final_form_id bigint not null auto_increment,
-    approve boolean not null,
+    approve boolean,
     page integer not null,
-    type tinyint not null check (type between 0 and 1),
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
     created_date timestamp(6) not null,
     last_modified_date timestamp(6) not null,
     student_id bigint not null unique,
@@ -122,8 +122,8 @@ create table graduation
 
 create table middle_form
 (
-    approve boolean not null,
-    type tinyint not null check (type between 0 and 1),
+    approve boolean,
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
     created_date timestamp(6) not null,
     last_modified_date timestamp(6) not null,
     middle_form_id bigint not null auto_increment,
@@ -137,8 +137,8 @@ create table middle_form
 
 create table proposal
 (
-    approve boolean not null,
-    type tinyint not null check (type between 0 and 1),
+    approve boolean,
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
     created_date timestamp(6) not null,
     last_modified_date timestamp(6) not null,
     proposal_id bigint not null auto_increment,
@@ -152,13 +152,13 @@ create table proposal
 
 create table submit
 (
-    approve boolean not null,
+    approve boolean,
     capstone_completion boolean,
-    graduate_date date not null,
+    graduate_date date,
     created_date timestamp(6) not null,
     last_modified_date timestamp(6) not null,
     submit_id bigint not null auto_increment,
-    professor_name varchar(10) not null,
+    professor_name varchar(10),
     reject_reason varchar(100),
     student_id bigint not null unique,
     primary key (submit_id)
@@ -166,18 +166,18 @@ create table submit
 
 alter table comment
     add constraint fk_comment_notice_board
-    foreign key (notice_board_id)
-    references notice_board (notice_board_id);
+        foreign key (notice_board_id)
+            references notice_board (notice_board_id);
 
 alter table comment
     add constraint fk_comment_student
-    foreign key (student_id)
-    references student (student_id);
+        foreign key (student_id)
+            references student (student_id);
 
 alter table notice_board
     add constraint fk_notice_board_student
-    foreign key (student_id)
-    references student (student_id);
+        foreign key (student_id)
+            references student (student_id);
 
 alter table final_form
     add constraint fk_final_student
