@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS final_form;
+DROP TABLE IF EXISTS middle_form;
+DROP TABLE IF EXISTS proposal;
+DROP TABLE IF EXISTS submit;
+DROP TABLE IF EXISTS graduation;
 DROP TABLE IF EXISTS refresh_token;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS notice_board;
@@ -75,7 +80,7 @@ create table schedule
 
 create table schedule_board
 (
-    schedule_board_id bigint auto_increment,
+    schedule_board_id bigint not null auto_increment,
     final_report text not null,
     middle_report text not null,
     pass text not null,
@@ -85,17 +90,111 @@ create table schedule_board
     primary key (schedule_board_id)
 );
 
+create table final_form
+(
+    final_form_id bigint not null auto_increment,
+    approve boolean,
+    page integer not null,
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    student_id bigint not null unique,
+    qualification varchar(45) not null,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    primary key (final_form_id)
+);
+
+create table graduation
+(
+    graduation_id bigint not null auto_increment,
+    capstone_completion boolean,
+    graduate_date date,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    student_id bigint not null unique,
+    professor_name varchar(10),
+    method enum ('OTHER','THESIS'),
+    status enum ('APPROVAL','REJECT','UN_APPROVAL'),
+    step enum ('FINAL','MIDDLE','OTHER_QUALIFICATION','PASS','PROPOSAL','RECEIVE'),
+    primary key (graduation_id)
+);
+
+create table middle_form
+(
+    approve boolean,
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    middle_form_id bigint not null auto_increment,
+    student_id bigint not null unique,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    plan varchar(500) not null,
+    text varchar(500) not null,
+    primary key (middle_form_id)
+);
+
+create table proposal
+(
+    approve boolean,
+    type enum ('IMPLEMENT','INVESTIGATE') not null,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    proposal_id bigint not null auto_increment,
+    student_id bigint not null unique,
+    content varchar(45) not null,
+    qualification varchar(45) not null,
+    reject_reason varchar(100),
+    title varchar(100) not null,
+    primary key (proposal_id)
+);
+
+create table submit
+(
+    approve boolean,
+    capstone_completion boolean,
+    graduate_date date,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    submit_id bigint not null auto_increment,
+    professor_name varchar(10),
+    reject_reason varchar(100),
+    student_id bigint not null unique,
+    primary key (submit_id)
+);
+
 alter table comment
     add constraint fk_comment_notice_board
-    foreign key (notice_board_id)
-    references notice_board (notice_board_id);
+        foreign key (notice_board_id)
+            references notice_board (notice_board_id);
 
 alter table comment
     add constraint fk_comment_student
-    foreign key (student_id)
-    references student (student_id);
+        foreign key (student_id)
+            references student (student_id);
 
 alter table notice_board
     add constraint fk_notice_board_student
-    foreign key (student_id)
-    references student (student_id);
+        foreign key (student_id)
+            references student (student_id);
+
+alter table final_form
+    add constraint fk_final_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table graduation
+    add constraint fk_graduation_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table middle_form
+    add constraint fk_middle_student
+        foreign key (student_id)
+            references student (student_id);
+
+alter table proposal
+    add constraint fk_proposal_student
+        foreign key (student_id)
+            references student (student_id);

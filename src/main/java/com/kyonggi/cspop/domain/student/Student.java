@@ -1,6 +1,9 @@
 package com.kyonggi.cspop.domain.student;
 
 import com.kyonggi.cspop.domain.BaseEntity;
+import com.kyonggi.cspop.domain.graduate.Graduation;
+import com.kyonggi.cspop.domain.graduate.Status;
+import com.kyonggi.cspop.domain.schedule.Step;
 import com.kyonggi.cspop.exception.NotReachedBirthException;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -15,7 +18,6 @@ import static com.kyonggi.cspop.domain.student.RoleType.STUDENT;
 @Getter
 @Entity
 @Table(name = "student")
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Student extends BaseEntity {
 
@@ -60,6 +62,9 @@ public class Student extends BaseEntity {
     @Column(name = "roleType", nullable = false, length = 10)
     private RoleType roleType;
 
+    @OneToOne(mappedBy = "student")
+    private Graduation graduation;
+
     public Student(
             String number,
             String loginId,
@@ -86,10 +91,51 @@ public class Student extends BaseEntity {
         this.roleType = STUDENT;
     }
 
+    public Student(
+            Long id,
+            String number,
+            String loginId,
+            String password,
+            LocalDate birth,
+            Department department,
+            Grade grade,
+            PhoneNumber phoneNumber,
+            String name,
+            Email email,
+            Classification classification,
+            RoleType roleType
+    ) {
+        this.id = id;
+        this.number = number;
+        this.loginId = loginId;
+        this.password = password;
+        this.birth = birth;
+        this.department = department;
+        this.grade = grade;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.email = email;
+        this.classification = classification;
+        this.roleType = roleType;
+    }
+
     private static void validateLimitBirthDate(LocalDate birth) {
         if (isNotReached(birth)) {
             throw new NotReachedBirthException(birth.toString());
         }
+    }
+
+    public void changeGraduationStatus(Status status) {
+        this.graduation.changeStatus(status);
+    }
+
+    public void changeGraduationStep(Step step) {
+        this.graduation.changeStep(step);
+    }
+
+    public void changeGraduationSubmit(LocalDate date, String professorName) {
+        this.graduation.changeDate(date);
+        this.graduation.changeProfessorName(professorName);
     }
 
     private static boolean isNotReached(LocalDate birth) {
@@ -98,5 +144,9 @@ public class Student extends BaseEntity {
 
     public boolean isSame(Long id) {
         return this.id.equals(id);
+    }
+
+    public void addGraduation(Graduation graduation) {
+        this.graduation = graduation;
     }
 }

@@ -1,6 +1,9 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.repository.*;
+import com.kyonggi.cspop.service.graduate.MiddleService;
+import com.kyonggi.cspop.service.graduate.ProposalService;
+import com.kyonggi.cspop.service.graduate.SubmitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +29,15 @@ public abstract class ServiceTest {
     protected NoticeBoardService noticeBoardService;
 
     @Autowired
+    protected SubmitService submitService;
+
+    @Autowired
+    protected ProposalService proposalService;
+
+    @Autowired
+    protected MiddleService middleService;
+
+    @Autowired
     protected StudentRepository studentRepository;
 
     @Autowired
@@ -42,6 +54,18 @@ public abstract class ServiceTest {
 
     @Autowired
     protected ScheduleBoardRepository scheduleBoardRepository;
+
+    @Autowired
+    protected GraduationRepository graduationRepository;
+
+    @Autowired
+    protected SubmitRepository submitRepository;
+
+    @Autowired
+    protected ProposalRepository proposalRepository;
+
+    @Autowired
+    protected MiddleRepository middleRepository;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;

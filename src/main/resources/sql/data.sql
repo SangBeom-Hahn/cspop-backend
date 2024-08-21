@@ -55,3 +55,23 @@ values (NOW(),'2024-08-14',NOW(),'2024-06-14','FINISH','PASS');
 insert into schedule_board
     (final_report, middle_report, other_qualification, pass, proposal, receive, schedule_board_id)
 values ('finalReport','middleReport','other','pass','proposal','receive', 3);
+
+insert into graduation
+    (created_date, last_modified_date, method, status, step, capstone_completion, graduate_date, professor_name, student_id)
+values (NOW(), NOW(), 'THESIS','UN_APPROVAL','RECEIVE',false, null, null, 1);
+
+insert into submit
+    (approve,capstone_completion,created_date,graduate_date,last_modified_date,professor_name,reject_reason,student_id)
+values (true,true,NOW(),'2024-06-14',NOW(),'dummy',NULL,1);
+
+insert into middle_form
+    (approve,created_date,last_modified_date,plan,reject_reason,student_id,text,title,type)
+values (true,NOW(),NOW(),'content',NULL,1,'text','title','IMPLEMENT');
+
+insert into final_form
+    (approve,created_date,last_modified_date,page,qualification,reject_reason,student_id,title,type)
+values (true,NOW(),NOW(),1,'qualification',NULL,1,'title','IMPLEMENT');
+
+insert into proposal
+    (approve,created_date,last_modified_date,content,qualification,reject_reason,student_id,title,type)
+values (true,NOW(),NOW(),'content','qualification',NULL,1,'title','IMPLEMENT');
