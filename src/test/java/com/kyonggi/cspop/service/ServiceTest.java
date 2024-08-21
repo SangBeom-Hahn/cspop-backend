@@ -1,6 +1,7 @@
 package com.kyonggi.cspop.service;
 
 import com.kyonggi.cspop.repository.*;
+import com.kyonggi.cspop.service.graduate.ProposalService;
 import com.kyonggi.cspop.service.graduate.SubmitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,9 @@ public abstract class ServiceTest {
     protected SubmitService submitService;
 
     @Autowired
+    protected ProposalService proposalService;
+
+    @Autowired
     protected StudentRepository studentRepository;
 
     @Autowired
@@ -52,6 +56,9 @@ public abstract class ServiceTest {
 
     @Autowired
     protected SubmitRepository submitRepository;
+
+    @Autowired
+    protected ProposalRepository proposalRepository;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;
