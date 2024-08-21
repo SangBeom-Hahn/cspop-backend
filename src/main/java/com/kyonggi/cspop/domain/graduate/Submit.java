@@ -36,7 +36,7 @@ public class Submit extends BaseEntity {
     private String reason;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_final_student"), nullable = false)
+    @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_submit_student"), nullable = false)
     private Student student;
 
     public Submit(String name, Student student) {

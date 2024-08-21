@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static com.kyonggi.cspop.domain.schedule.Step.PROPOSAL;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -33,5 +35,28 @@ public class SubmitService {
                 .getId();
 
         return SubmitResponseDto.from(id);
+    }
+
+    public void approveSubmit(SubmitUpdateRequestDto submitUpdateRequestDto, Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new NoSuchStudentIdException(studentId));
+
+        Submit submit = submitRepository.findByStudent(student)
+                .orElseThrow(() -> new NoSuchSubmitException(studentId));
+
+        changeSubmit(submitUpdateRequestDto, submit);
+        changeGraduation(submitUpdateRequestDto, student);
+    }
+
+    private void changeSubmit(SubmitUpdateRequestDto submitUpdateRequestDto, Submit submit) {
+        submit.changeGraduateDate(submitUpdateRequestDto.getGraduateDate());
+        submit.changeApprove(submitUpdateRequestDto.getApprove());
+        submit.changeCompletion(submitUpdateRequestDto.getCompletion());
+        submit.changeReason(submitUpdateRequestDto.getReason());
+    }
+
+    private static void changeGraduation(SubmitUpdateRequestDto submitUpdateRequestDto, Student student) {
+        student.changeGraduationStep(PROPOSAL);
+        student.changeGraduationSubmit(submitUpdateRequestDto.getGraduateDate(), student.getName());
     }
 }
