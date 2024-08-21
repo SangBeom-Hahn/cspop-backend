@@ -1,14 +1,14 @@
 package com.kyonggi.cspop.controller;
 
+import com.kyonggi.cspop.controller.auth.AuthenticationPrincipal;
+import com.kyonggi.cspop.controller.dto.graduate.SubmitUpdateRequest;
 import com.kyonggi.cspop.repository.SubmitRepository;
 import com.kyonggi.cspop.service.dto.graduate.submit.SubmitResponseDto;
 import com.kyonggi.cspop.service.graduate.SubmitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -26,5 +26,14 @@ public class SubmitController {
         return ResponseEntity
                 .created(URI.create("/api/submits/" + submitResponseDto.getId()))
                 .body(submitResponseDto);
+    }
+
+    @PutMapping("/{studentId}")
+    public ResponseEntity<Void> approve(
+            @RequestBody @Validated SubmitUpdateRequest submitUpdateRequest,
+            @PathVariable("studentId") Long studentId
+    ) {
+        submitService.approveSubmit(submitUpdateRequest.toServiceDto(), studentId);
+        return ResponseEntity.noContent().build();
     }
 }

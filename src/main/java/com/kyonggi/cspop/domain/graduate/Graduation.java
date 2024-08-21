@@ -66,6 +66,7 @@ public class Graduation extends BaseEntity {
         this.date = date;
         this.professorName = professorName;
         this.student = student;
+        this.student.addGraduation(this);
     }
 
     private static void validateDate(LocalDate date) {

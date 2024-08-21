@@ -145,4 +145,8 @@ public class Student extends BaseEntity {
     public boolean isSame(Long id) {
         return this.id.equals(id);
     }
+
+    public void addGraduation(Graduation graduation) {
+        this.graduation = graduation;
+    }
 }
