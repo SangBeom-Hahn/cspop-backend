@@ -22,7 +22,6 @@ class GraduationRepositoryTest extends RepositoryTest {
     @BeforeEach
     void setUp() {
         student = new Student(
-                1L,
                 "201811111",
                 "123",
                 "111&!a",
@@ -32,8 +31,7 @@ class GraduationRepositoryTest extends RepositoryTest {
                 PhoneNumber.from("010-1111-1111"),
                 "dummy",
                 Email.from("1@naver.com"),
-                Classification.UNDERGRADUATE_STUDENT,
-                RoleType.ADMIN
+                Classification.UNDERGRADUATE_STUDENT
         );
         graduation = new Graduation(
                 Method.THESIS,
