@@ -17,7 +17,7 @@ public class Middle extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "approve", nullable = false)
+    @Column(name = "approve")
     private Boolean approve;
 
     @Column(name = "title", nullable = false, length = 100)
