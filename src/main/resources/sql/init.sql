@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS notice_board;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS schedule;
 DROP TABLE IF EXISTS schedule_board;
+DROP TABLE IF EXISTS guide_board;
 
 create table student
 (
@@ -162,6 +163,15 @@ create table submit
     reject_reason varchar(100),
     student_id bigint not null unique,
     primary key (submit_id)
+);
+
+create table guide_board
+(
+    guide_board_id bigint not null auto_increment,
+    created_date timestamp(6) not null,
+    last_modified_date timestamp(6) not null,
+    content text not null,
+    primary key (guide_board_id)
 );
 
 alter table comment
