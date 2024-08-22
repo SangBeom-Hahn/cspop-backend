@@ -29,13 +29,13 @@ public class ProposalController {
                 .body(proposalSaveResponseDto);
     }
 
-    @PutMapping("/{studentId}/approve")
+    @PutMapping("/admins/{studentId}/approve")
     public ResponseEntity<Void> approve(@PathVariable("studentId") Long studentId) {
         proposalService.approveProposal(studentId);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{studentId}/reject")
+    @PutMapping("/admins/{studentId}/reject")
     public ResponseEntity<Void> reject(
             @PathVariable("studentId") Long studentId,
             @RequestBody @Validated RejectRequest rejectRequest
