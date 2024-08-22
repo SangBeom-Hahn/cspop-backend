@@ -38,6 +38,9 @@ public abstract class ServiceTest {
     protected MiddleService middleService;
 
     @Autowired
+    protected GuideBoardService guideBoardService;
+
+    @Autowired
     protected StudentRepository studentRepository;
 
     @Autowired
@@ -66,6 +69,9 @@ public abstract class ServiceTest {
 
     @Autowired
     protected MiddleRepository middleRepository;
+
+    @Autowired
+    protected GuideBoardRepository guideBoardRepository;
 
     @Autowired
     protected PasswordEncoder passwordEncoder;
