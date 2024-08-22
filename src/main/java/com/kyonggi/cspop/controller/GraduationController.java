@@ -40,7 +40,7 @@ public class GraduationController {
         return ResponseEntity.ok(graduationService.findAllGraduation());
     }
 
-    @GetMapping("/{studentId}")
+    @GetMapping("/admins/{studentId}")
     public ResponseEntity<GraduationResponseDto> findGraduation(@PathVariable("studentId") Long studentId) {
         return ResponseEntity.ok(graduationService.findGraduation(studentId));
     }

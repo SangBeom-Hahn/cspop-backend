@@ -31,13 +31,13 @@ public class FinalController {
                 .body(finalSaveResponseDto);
     }
 
-    @PutMapping("/{studentId}/approve")
+    @PutMapping("/admins/{studentId}/approve")
     public ResponseEntity<Void> approve(@PathVariable("studentId") Long studentId) {
         finalService.approveFinal(studentId);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{studentId}/reject")
+    @PutMapping("/admins/{studentId}/reject")
     public ResponseEntity<Void> reject(
             @PathVariable("studentId") Long studentId,
             @RequestBody @Validated RejectRequest rejectRequest

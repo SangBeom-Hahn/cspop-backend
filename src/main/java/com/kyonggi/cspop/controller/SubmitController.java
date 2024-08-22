@@ -28,7 +28,7 @@ public class SubmitController {
                 .body(submitResponseDto);
     }
 
-    @PutMapping("/{studentId}")
+    @PutMapping("/admins/{studentId}")
     public ResponseEntity<Void> approve(
             @RequestBody @Validated SubmitUpdateRequest submitUpdateRequest,
             @PathVariable("studentId") Long studentId

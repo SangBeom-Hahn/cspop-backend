@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.config;
 
+import com.kyonggi.cspop.controller.auth.AdminInterceptor;
 import com.kyonggi.cspop.controller.auth.AuthenticationPrincipalArgumentResolver;
 import com.kyonggi.cspop.controller.auth.LoginInterceptor;
 import com.kyonggi.cspop.support.JwtTokenProvider;
@@ -26,6 +27,15 @@ public class AuthenticationPrincipalConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/students/validate-duplicate")
                 .excludePathPatterns("/api/login")
                 .excludePathPatterns("/api/logout");
+
+        registry.addInterceptor(new AdminInterceptor(jwtTokenProvider))
+                .order(2)
+                .addPathPatterns("/api/finals/admins/**")
+                .addPathPatterns("/api/proposals/admins/**")
+                .addPathPatterns("/api/middles/admins/**")
+                .addPathPatterns("/api/submits/admins/**")
+                .addPathPatterns("/api/graduates/admins/**")
+                .addPathPatterns("/api/noticeboards/admins");
     }
 
     @Override
