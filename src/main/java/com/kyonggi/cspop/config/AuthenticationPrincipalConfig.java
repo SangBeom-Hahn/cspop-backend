@@ -35,8 +35,8 @@ public class AuthenticationPrincipalConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/middles/admins/**")
                 .addPathPatterns("/api/submits/admins/**")
                 .addPathPatterns("/api/graduates/admins/**")
-                .addPathPatterns("/api/noticeboards/admins")
-                .addPathPatterns("/api/admins/guideboards");
+                .addPathPatterns("/api/noticeboards/admins/**")
+                .addPathPatterns("/api/guideboards/admins/**");
     }
 
     @Override
