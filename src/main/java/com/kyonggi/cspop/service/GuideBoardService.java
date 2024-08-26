@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.kyonggi.cspop.utils.validator.CspopConstant.BOARD_ID;
+
 @Slf4j
 @Service
 @Transactional
@@ -18,15 +20,15 @@ public class GuideBoardService {
     private final GuideBoardRepository guideBoardRepository;
 
     public GuideBoardResponseDto findGuidanceBoard() {
-        GuideBoard guideBoard = guideBoardRepository.findById(1L)
-                .orElseThrow(() -> new NotFoundGuideBoardException(1L));
+        GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
+                .orElseThrow(() -> new NotFoundGuideBoardException(BOARD_ID));
 
         return GuideBoardResponseDto.from(guideBoard);
     }
 
     public void updateGuidanceBoard(String content) {
-        GuideBoard guideBoard = guideBoardRepository.findById(1L)
-                .orElseThrow(() -> new NotFoundGuideBoardException(1L));
+        GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
+                .orElseThrow(() -> new NotFoundGuideBoardException(BOARD_ID));
 
         guideBoard.changeContent(content);
     }

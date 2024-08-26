@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.kyonggi.cspop.utils.validator.CspopConstant.SCHDULE_ID;
+
 @Slf4j
 @Service
 @Transactional
@@ -33,7 +35,7 @@ public class ScheduleService {
                 .map(ScheduleResponseDto::from)
                 .collect(Collectors.toList());
 
-        Board board = scheduleBoardRepository.findById(3L)
+        Board board = scheduleBoardRepository.findById(SCHDULE_ID)
                 .orElseThrow();
 
         return SchedulesResponseDto.of(

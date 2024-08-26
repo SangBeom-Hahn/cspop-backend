@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.kyonggi.cspop.utils.validator.CspopConstant.START_VIEW_COUNT;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -34,7 +36,7 @@ public class NoticeBoardService {
     public NoticeBoardSaveResponseDto save(String title, String content, Boolean fix, Long authorId) {
         Student author = studentRepository.findById(authorId)
                 .orElseThrow(() -> new NoSuchStudentIdException(authorId));
-        NoticeBoard noticeBoard = new NoticeBoard(content, fix, title, 1, author);
+        NoticeBoard noticeBoard = new NoticeBoard(content, fix, title, START_VIEW_COUNT, author);
 
         Long saveId = noticeBoardRepository.save(noticeBoard)
                 .getId();

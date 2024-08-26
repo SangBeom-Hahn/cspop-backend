@@ -9,6 +9,7 @@ public class AuthorizationExtractor {
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER_TYPE = "Bearer";
     private static final String ACCESS_TOKEN_TYPE = AuthorizationExtractor.class.getSimpleName() + ".ACCESS_TOKEN_TYPE";
+    private static final char COMMA = ',';
 
     public static String extract(final HttpServletRequest request) {
         final Enumeration<String> headers = request.getHeaders(AUTHORIZATION);
@@ -31,7 +32,7 @@ public class AuthorizationExtractor {
     }
 
     private static String parseAuthHeaderValue(final String authHeaderValue) {
-        final int commaIndex = authHeaderValue.indexOf(',');
+        final int commaIndex = authHeaderValue.indexOf(COMMA);
         if (commaIndex > 0) {
             return authHeaderValue.substring(0, commaIndex);
         }
