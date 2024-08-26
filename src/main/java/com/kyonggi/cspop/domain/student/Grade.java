@@ -13,11 +13,11 @@ public enum Grade {
 
     private final String value;
 
-    Grade(String value) {
+    Grade(final String value) {
         this.value = value;
     }
 
-    public static Grade from(String value) {
+    public static Grade from(final String value) {
         return Arrays.stream(values())
                 .filter(grade -> grade.value.equals(value))
                 .findFirst()

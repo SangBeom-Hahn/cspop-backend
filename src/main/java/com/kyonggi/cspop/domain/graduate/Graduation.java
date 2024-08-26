@@ -50,13 +50,13 @@ public class Graduation extends BaseEntity {
     private Student student;
 
     public Graduation(
-            Method method,
-            Status status,
-            Step step,
-            Boolean completion,
-            LocalDate date,
-            String professorName,
-            Student student
+            final Method method,
+            final Status status,
+            final Step step,
+            final Boolean completion,
+            final LocalDate date,
+            final String professorName,
+            final Student student
     ) {
         validateDate(date);
         this.method = method;
@@ -69,25 +69,25 @@ public class Graduation extends BaseEntity {
         this.student.addGraduation(this);
     }
 
-    private static void validateDate(LocalDate date) {
+    private static void validateDate(final LocalDate date) {
         if (date.isBefore(now())) {
             throw new NotReachedGraduationException(date.toString());
         }
     }
 
-    public void changeStatus(Status status) {
+    public void changeStatus(final Status status) {
         this.status = status;
     }
 
-    public void changeStep(Step step) {
+    public void changeStep(final Step step) {
         this.step = step;
     }
 
-    public void changeDate(LocalDate date) {
+    public void changeDate(final LocalDate date) {
         this.date = date;
     }
 
-    public void changeProfessorName(String professorName) {
+    public void changeProfessorName(final String professorName) {
         this.professorName = professorName;
     }
 }

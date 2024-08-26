@@ -19,12 +19,12 @@ public enum Status {
 
     private final TriPredicate<LocalDate, LocalDate, LocalDate> predicate;
 
-    Status(String name, TriPredicate<LocalDate, LocalDate, LocalDate> predicate) {
+    Status(final String name, final TriPredicate<LocalDate, LocalDate, LocalDate> predicate) {
         this.name = name;
         this.predicate = predicate;
     }
 
-    public static Status of(LocalDate now, LocalDate start, LocalDate end) {
+    public static Status of(final LocalDate now, final LocalDate start, final LocalDate end) {
         return Arrays.stream(values())
                 .filter(status -> status.predicate.test(now, start, end))
                 .findFirst()

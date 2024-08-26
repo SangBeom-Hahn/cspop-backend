@@ -14,11 +14,11 @@ public enum Department {
 
     private final String name;
 
-    Department(String name) {
+    Department(final String name) {
         this.name = name;
     }
 
-    public static Department from(String name) {
+    public static Department from(final String name) {
         return Arrays.stream(values())
                 .filter(department -> department.name.equals(name))
                 .findFirst()

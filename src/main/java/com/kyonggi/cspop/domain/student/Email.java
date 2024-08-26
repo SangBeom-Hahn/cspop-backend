@@ -23,16 +23,16 @@ public class Email {
     @Column(name = "email", nullable = false, length = 30)
     private String value;
 
-    private Email(String value) {
+    private Email(final String value) {
         this.value = value;
     }
 
-    public static Email from(String value) {
+    public static Email from(final String value) {
         validatePattern(value);
         return new Email(value);
     }
 
-    private static void validatePattern(String value) {
+    private static void validatePattern(final String value) {
         Matcher matcher = PATTERN.matcher(value);
         if (!matcher.matches()) {
             throw new WrongEmailPatternException(value);

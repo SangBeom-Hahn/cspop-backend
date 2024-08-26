@@ -10,11 +10,11 @@ public enum Status {
 
     private final String name;
 
-    Status(String name) {
+    Status(final String name) {
         this.name = name;
     }
 
-    public static Status from(String name) {
+    public static Status from(final String name) {
         return Arrays.stream(values())
                 .filter(status -> status.name.equals(name))
                 .findFirst()

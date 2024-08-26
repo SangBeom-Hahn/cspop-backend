@@ -66,16 +66,16 @@ public class Student extends BaseEntity {
     private Graduation graduation;
 
     public Student(
-            String number,
-            String loginId,
-            String password,
-            LocalDate birth,
-            Department department,
-            Grade grade,
-            PhoneNumber phoneNumber,
-            String name,
-            Email email,
-            Classification classification
+            final String number,
+            final String loginId,
+            final String password,
+            final LocalDate birth,
+            final Department department,
+            final Grade grade,
+            final PhoneNumber phoneNumber,
+            final String name,
+            final Email email,
+            final Classification classification
     ) {
         validateLimitBirthDate(birth);
         this.number = number;
@@ -92,18 +92,18 @@ public class Student extends BaseEntity {
     }
 
     public Student(
-            Long id,
-            String number,
-            String loginId,
-            String password,
-            LocalDate birth,
-            Department department,
-            Grade grade,
-            PhoneNumber phoneNumber,
-            String name,
-            Email email,
-            Classification classification,
-            RoleType roleType
+            final Long id,
+            final String number,
+            final String loginId,
+            final String password,
+            final LocalDate birth,
+            final Department department,
+            final Grade grade,
+            final PhoneNumber phoneNumber,
+            final String name,
+            final Email email,
+            final Classification classification,
+            final RoleType roleType
     ) {
         this.id = id;
         this.number = number;
@@ -119,34 +119,34 @@ public class Student extends BaseEntity {
         this.roleType = roleType;
     }
 
-    private static void validateLimitBirthDate(LocalDate birth) {
+    private static void validateLimitBirthDate(final LocalDate birth) {
         if (isNotReached(birth)) {
             throw new NotReachedBirthException(birth.toString());
         }
     }
 
-    public void changeGraduationStatus(Status status) {
+    public void changeGraduationStatus(final Status status) {
         this.graduation.changeStatus(status);
     }
 
-    public void changeGraduationStep(Step step) {
+    public void changeGraduationStep(final Step step) {
         this.graduation.changeStep(step);
     }
 
-    public void changeGraduationSubmit(LocalDate date, String professorName) {
+    public void changeGraduationSubmit(final LocalDate date, final String professorName) {
         this.graduation.changeDate(date);
         this.graduation.changeProfessorName(professorName);
     }
 
-    private static boolean isNotReached(LocalDate birth) {
+    private static boolean isNotReached(final LocalDate birth) {
         return birth.isAfter(LocalDate.now());
     }
 
-    public boolean isSame(Long id) {
+    public boolean isSame(final Long id) {
         return this.id.equals(id);
     }
 
-    public void addGraduation(Graduation graduation) {
+    public void addGraduation(final Graduation graduation) {
         this.graduation = graduation;
     }
 }

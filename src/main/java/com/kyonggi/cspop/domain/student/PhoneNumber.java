@@ -23,16 +23,16 @@ public class PhoneNumber {
     @Column(name = "phone_number", nullable = false, length = 20)
     private String value;
 
-    private PhoneNumber(String value) {
+    private PhoneNumber(final String value) {
         this.value = value;
     }
 
-    public static PhoneNumber from(String value) {
+    public static PhoneNumber from(final String value) {
         validatePattern(value);
         return new PhoneNumber(value);
     }
 
-    private static void validatePattern(String value) {
+    private static void validatePattern(final String value) {
         Matcher matcher = PATTERN.matcher(value);
         if (!matcher.matches()) {
             throw new WrongPhoneNumberPatternException(value);

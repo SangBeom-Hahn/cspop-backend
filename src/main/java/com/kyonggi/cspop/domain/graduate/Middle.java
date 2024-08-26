@@ -40,7 +40,7 @@ public class Middle extends BaseEntity {
     @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_middle_student"), nullable = false)
     private Student student;
 
-    public Middle(String title, Type type, String text, String plan, Student student) {
+    public Middle(final String title, final Type type, final String text, final String plan, final Student student) {
         this.title = title;
         this.type = type;
         this.text = text;
@@ -48,11 +48,11 @@ public class Middle extends BaseEntity {
         this.student = student;
     }
 
-    public void changeApprove(Boolean approve) {
+    public void changeApprove(final Boolean approve) {
         this.approve = approve;
     }
 
-    public void changeReason(String reason) {
+    public void changeReason(final String reason) {
         this.reason = reason;
     }
 }

@@ -39,24 +39,24 @@ public class Submit extends BaseEntity {
     @JoinColumn(name = "student_id", foreignKey = @ForeignKey(name = "fk_submit_student"), nullable = false)
     private Student student;
 
-    public Submit(String name, Student student) {
+    public Submit(final String name, final Student student) {
         this.name = name;
         this.student = student;
     }
 
-    public void changeGraduateDate(LocalDate graduateDate) {
+    public void changeGraduateDate(final LocalDate graduateDate) {
         this.graduateDate = graduateDate;
     }
 
-    public void changeApprove(Boolean approve) {
+    public void changeApprove(final Boolean approve) {
         this.approve = approve;
     }
 
-    public void changeCompletion(Boolean completion) {
+    public void changeCompletion(final Boolean completion) {
         this.completion = completion;
     }
 
-    public void changeReason(String reason) {
+    public void changeReason(final String reason) {
         this.reason = reason;
     }
 }

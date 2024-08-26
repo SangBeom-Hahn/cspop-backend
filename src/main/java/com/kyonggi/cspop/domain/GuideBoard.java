@@ -20,11 +20,11 @@ public class GuideBoard extends BaseEntity{
     @Column(name = "content", nullable = false, length = 15000)
     private String content;
 
-    public GuideBoard(String content) {
+    public GuideBoard(final String content) {
         this.content = content;
     }
 
-    public void changeContent(String content) {
+    public void changeContent(final String content) {
         this.content = content;
     }
 }

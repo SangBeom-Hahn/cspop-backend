@@ -34,12 +34,12 @@ public class Board {
     private String other;
 
     public Board(
-            String receive,
-            String proposal,
-            String middleReport,
-            String finalReport,
-            String pass,
-            String other
+            final String receive,
+            final String proposal,
+            final String middleReport,
+            final String finalReport,
+            final String pass,
+            final String other
     ) {
         this.receive = receive;
         this.proposal = proposal;
@@ -49,27 +49,27 @@ public class Board {
         this.other = other;
     }
 
-    public void changeReceive(String receive) {
+    public void changeReceive(final String receive) {
         this.receive = receive;
     }
 
-    public void changeProposal(String proposal) {
+    public void changeProposal(final String proposal) {
         this.proposal = proposal;
     }
 
-    public void changeMiddleReport(String middleReport) {
+    public void changeMiddleReport(final String middleReport) {
         this.middleReport = middleReport;
     }
 
-    public void changeFinalReport(String finalReport) {
+    public void changeFinalReport(final String finalReport) {
         this.finalReport = finalReport;
     }
 
-    public void changeFinalPass(String pass) {
+    public void changeFinalPass(final String pass) {
         this.pass = pass;
     }
 
-    public void changeOtherQualification(String other) {
+    public void changeOtherQualification(final String other) {
         this.other = other;
     }
 }

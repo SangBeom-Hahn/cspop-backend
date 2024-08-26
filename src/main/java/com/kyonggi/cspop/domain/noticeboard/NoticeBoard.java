@@ -46,11 +46,11 @@ public class NoticeBoard extends BaseEntity {
     private List<Comment> comments = new ArrayList<>();
 
     public NoticeBoard(
-            String content,
-            Boolean fix,
-            String title,
-            Integer views,
-            Student author
+            final String content,
+            final Boolean fix,
+            final String title,
+            final Integer views,
+            final Student author
     ) {
         this.content = content;
         this.fix = fix;
@@ -60,15 +60,15 @@ public class NoticeBoard extends BaseEntity {
         this.author = author;
     }
 
-    public void changeContent(String content) {
+    public void changeContent(final String content) {
         this.content = content;
     }
 
-    public void changeFix(Boolean fix) {
+    public void changeFix(final Boolean fix) {
         this.fix = fix;
     }
 
-    public void changeTitle(String title) {
+    public void changeTitle(final String title) {
         this.title = title;
     }
 
@@ -76,11 +76,11 @@ public class NoticeBoard extends BaseEntity {
         this.views += 1;
     }
 
-    public boolean isAuthor(Long id) {
+    public boolean isAuthor(final Long id) {
         return this.author.isSame(id);
     }
 
-    public void addComment(Comment comment) {
+    public void addComment(final Comment comment) {
         this.comments.add(comment);
     }
 

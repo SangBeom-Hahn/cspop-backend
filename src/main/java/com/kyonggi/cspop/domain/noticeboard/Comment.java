@@ -34,9 +34,9 @@ public class Comment extends BaseEntity {
     private NoticeBoard noticeBoard;
 
     public Comment(
-            String content,
-            Student student,
-            NoticeBoard noticeBoard
+            final String content,
+            final Student student,
+            final NoticeBoard noticeBoard
     ) {
         this.content = content;
         this.writeDate = LocalDateTime.now();
@@ -45,11 +45,11 @@ public class Comment extends BaseEntity {
         this.noticeBoard.addComment(this);
     }
 
-    public void changeContent(String content) {
+    public void changeContent(final String content) {
         this.content = content;
     }
 
-    public boolean isAuthor(Long id) {
+    public boolean isAuthor(final Long id) {
         return this.student.isSame(id);
     }
 

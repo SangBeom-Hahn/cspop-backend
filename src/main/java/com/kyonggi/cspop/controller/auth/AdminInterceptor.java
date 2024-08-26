@@ -23,13 +23,13 @@ public class AdminInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private static void validateRoleType(String rolePayload) {
+    private static void validateRoleType(final String rolePayload) {
         if (isMatchAtRole(rolePayload)) {
             throw new InvalidRoleTypeException();
         }
     }
 
-    private static boolean isMatchAtRole(String rolePayload) {
+    private static boolean isMatchAtRole(final String rolePayload) {
         return RoleType.ADMIN != RoleType.valueOf(rolePayload);
     }
 }
