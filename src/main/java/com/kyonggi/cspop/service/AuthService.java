@@ -37,9 +37,13 @@ public class AuthService {
     }
 
     private void validatePassword(final Student findStudent, final String password) {
-        if (!passwordEncoder.matches(password, findStudent.getPassword())) {
+        if (isMisMatchPassword(findStudent, password)) {
             throw new IdPasswordMismatchException();
         }
+    }
+
+    private boolean isMisMatchPassword(Student findStudent, String password) {
+        return !passwordEncoder.matches(password, findStudent.getPassword());
     }
 
     private TokenResponseDto issueTokenDto(Long studentId, RoleType roleType) {

@@ -24,8 +24,12 @@ public class AdminInterceptor implements HandlerInterceptor {
     }
 
     private static void validateRoleType(String rolePayload) {
-        if (RoleType.ADMIN != RoleType.valueOf(rolePayload)) {
+        if (isMatchAtRole(rolePayload)) {
             throw new InvalidRoleTypeException();
         }
+    }
+
+    private static boolean isMatchAtRole(String rolePayload) {
+        return RoleType.ADMIN != RoleType.valueOf(rolePayload);
     }
 }

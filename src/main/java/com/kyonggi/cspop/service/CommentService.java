@@ -44,8 +44,12 @@ public class CommentService {
     }
 
     private static void validateAuthor(Long authorId, Comment comment) {
-        if (!comment.isAuthor(authorId)) {
+        if (isNotAuthor(authorId, comment)) {
             throw new InvalidAuthorException();
         }
+    }
+
+    private static boolean isNotAuthor(Long authorId, Comment comment) {
+        return !comment.isAuthor(authorId);
     }
 }
