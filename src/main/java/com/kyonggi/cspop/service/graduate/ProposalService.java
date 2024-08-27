@@ -25,45 +25,45 @@ public class ProposalService {
     private final ProposalRepository proposalRepository;
 
     public ProposalSaveResponseDto saveProposal(
-            ProposalSaveRequestDto proposalSaveRequestDto,
-            Long studentId
+            final ProposalSaveRequestDto proposalSaveRequestDto,
+            final Long studentId
     ) {
-        Student student = studentRepository.findById(studentId)
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
 
-        Proposal proposal = new Proposal(
+        final Proposal proposal = new Proposal(
                 proposalSaveRequestDto.getTitle(),
                 proposalSaveRequestDto.getType(),
                 proposalSaveRequestDto.getQualification(),
                 proposalSaveRequestDto.getContent(),
                 student
         );
-        Long saveId = proposalRepository.save(proposal)
+        final Long saveId = proposalRepository.save(proposal)
                 .getId();
 
         return ProposalSaveResponseDto.from(saveId);
     }
 
-    public void approveProposal(Long studentId) {
-        Student student = studentRepository.findById(studentId)
+    public void approveProposal(final Long studentId) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Proposal proposal = proposalRepository.findByStudent(student)
+        final Proposal proposal = proposalRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchProposalException(studentId));
 
         student.changeGraduationStep(MIDDLE);
         proposal.changeApprove(true);
     }
 
-    public void rejectProposal(Long studentId, String reason) {
-        Student student = studentRepository.findById(studentId)
+    public void rejectProposal(final Long studentId, final String reason) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Proposal proposal = proposalRepository.findByStudent(student)
+        final Proposal proposal = proposalRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchProposalException(studentId));
 
         changeProposal(reason, proposal);
     }
 
-    private void changeProposal(String reason, Proposal proposal) {
+    private void changeProposal(final String reason, final Proposal proposal) {
         proposal.changeApprove(false);
         proposal.changeReason(reason);
     }

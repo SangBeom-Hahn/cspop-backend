@@ -24,13 +24,13 @@ public class MiddleService {
     private final MiddleRepository middleRepository;
 
     public MiddleSaveResponseDto saveMiddle(
-            MiddleSaveRequestDto middleSaveRequestDto,
-            Long studentId
+            final MiddleSaveRequestDto middleSaveRequestDto,
+            final Long studentId
     ) {
-        Student student = studentRepository.findById(studentId)
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
 
-        Middle middle = new Middle(
+        final Middle middle = new Middle(
                 middleSaveRequestDto.getTitle(),
                 middleSaveRequestDto.getType(),
                 middleSaveRequestDto.getText(),
@@ -38,32 +38,32 @@ public class MiddleService {
                 student
         );
 
-        Long saveId = middleRepository.save(middle)
+        final Long saveId = middleRepository.save(middle)
                 .getId();
 
         return MiddleSaveResponseDto.from(saveId);
     }
 
-    public void approveMiddle(Long studentId) {
-        Student student = studentRepository.findById(studentId)
+    public void approveMiddle(final Long studentId) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Middle middle = middleRepository.findByStudent(student)
+        final Middle middle = middleRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchMiddleException(studentId));
 
         student.changeGraduationStep(FINAL);
         middle.changeApprove(true);
     }
 
-    public void rejectMiddle(Long studentId, String reason) {
-        Student student = studentRepository.findById(studentId)
+    public void rejectMiddle(final Long studentId, final String reason) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Middle middle = middleRepository.findByStudent(student)
+        final Middle middle = middleRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchMiddleException(studentId));
 
         changeMiddle(reason, middle);
     }
 
-    private void changeMiddle(String reason, Middle middle) {
+    private void changeMiddle(final String reason, final Middle middle) {
         middle.changeApprove(false);
         middle.changeReason(reason);
     }

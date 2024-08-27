@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface MiddleRepository extends JpaRepository<Middle, Long> {
 
-    Optional<Middle> findByStudent(Student student);
+    Optional<Middle> findByStudent(final Student student);
 }

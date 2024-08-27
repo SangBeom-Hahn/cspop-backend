@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface NoticeBoardRepository extends JpaRepository<NoticeBoard, Long> {
 
-    List<NoticeBoard> findAllByAuthor(Student author);
+    List<NoticeBoard> findAllByAuthor(final Student author);
 
-    Page<NoticeBoard> findAllByOrderByIdDesc(Pageable pageable);
+    Page<NoticeBoard> findAllByOrderByIdDesc(final Pageable pageable);
 }

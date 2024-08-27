@@ -23,7 +23,7 @@ public class ScheduleBoardResponseDto {
 
     private String other;
 
-    public static ScheduleBoardResponseDto from(Board board) {
+    public static ScheduleBoardResponseDto from(final Board board) {
         return new ScheduleBoardResponseDto(
                 board.getReceive(),
                 board.getProposal(),

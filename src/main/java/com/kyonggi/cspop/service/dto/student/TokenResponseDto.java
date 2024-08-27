@@ -16,7 +16,7 @@ public class TokenResponseDto {
 
     private String refreshToken;
 
-    public static TokenResponseDto of(String accessToken, String refreshToken, Long id) {
+    public static TokenResponseDto of(final String accessToken, final String refreshToken, final Long id) {
         return new TokenResponseDto(id, accessToken, refreshToken);
     }
 }

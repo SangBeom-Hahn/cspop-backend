@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class FinalSaveResponseDto {
     private Long id;
 
-    public static FinalSaveResponseDto from(Long id) {
+    public static FinalSaveResponseDto from(final Long id) {
         return new FinalSaveResponseDto(id);
     }
 }

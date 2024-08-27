@@ -20,14 +20,14 @@ public class GuideBoardService {
     private final GuideBoardRepository guideBoardRepository;
 
     public GuideBoardResponseDto findGuidanceBoard() {
-        GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
+        final GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
                 .orElseThrow(() -> new NotFoundGuideBoardException(BOARD_ID));
 
         return GuideBoardResponseDto.from(guideBoard);
     }
 
-    public void updateGuidanceBoard(String content) {
-        GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
+    public void updateGuidanceBoard(final String content) {
+        final GuideBoard guideBoard = guideBoardRepository.findById(BOARD_ID)
                 .orElseThrow(() -> new NotFoundGuideBoardException(BOARD_ID));
 
         guideBoard.changeContent(content);

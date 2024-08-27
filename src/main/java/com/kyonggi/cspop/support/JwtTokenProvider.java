@@ -98,12 +98,12 @@ public class JwtTokenProvider {
             this.claims = Jwts.claims();
         }
 
-        public PayloadBuilder setSubject(String subject) {
+        public PayloadBuilder setSubject(final String subject) {
             claims.setSubject(subject);
             return this;
         }
 
-        public PayloadBuilder put(String payload) {
+        public PayloadBuilder put(final String payload) {
             claims.put(ROLE, payload);
             return this;
         }

@@ -10,7 +10,7 @@ public enum Method {
 
     private final String name;
 
-    Method(String name) {
+    Method(final String name) {
         this.name = name;
     }
 

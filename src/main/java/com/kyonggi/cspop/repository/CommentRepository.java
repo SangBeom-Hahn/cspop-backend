@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    List<Comment> findAllByNoticeBoard(NoticeBoard noticeBoard);
+    List<Comment> findAllByNoticeBoard(final NoticeBoard noticeBoard);
 }

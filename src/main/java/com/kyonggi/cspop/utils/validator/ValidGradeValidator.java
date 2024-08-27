@@ -9,7 +9,7 @@ public class ValidGradeValidator implements ConstraintValidator<ValidGrade, Stri
     private static final List<String> ALLOWED_GRADES = List.of("1학년", "2학년", "3학년", "4학년");
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(final String value, ConstraintValidatorContext context) {
         return ALLOWED_GRADES.contains(value);
     }
 }

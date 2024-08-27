@@ -26,9 +26,9 @@ public class ControllerAdvice {
             final HttpServletRequest request,
             final MethodArgumentNotValidException e
     ) {
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        FieldError mainError = fieldErrors.get(0);
-        String[] errorInfo = Objects
+        final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        final FieldError mainError = fieldErrors.get(0);
+        final String[] errorInfo = Objects
                 .requireNonNull(mainError.getDefaultMessage())
                 .split(":");
 
@@ -51,9 +51,9 @@ public class ControllerAdvice {
             final HttpServletRequest request,
             final BindException e
     ) {
-        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        FieldError mainError = fieldErrors.get(0);
-        String[] errorInfo = Objects
+        final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        final FieldError mainError = fieldErrors.get(0);
+        final String[] errorInfo = Objects
                 .requireNonNull(mainError.getDefaultMessage())
                 .split(":");
 

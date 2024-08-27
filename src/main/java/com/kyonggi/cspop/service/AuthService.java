@@ -28,8 +28,8 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    public TokenResponseDto login(String loginId, String password) {
-        Student findStudent = studentRepository.findByLoginId(loginId)
+    public TokenResponseDto login(final String loginId, final String password) {
+        final Student findStudent = studentRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new NoSuchStudentException(loginId));
 
         validatePassword(findStudent, password);
@@ -42,19 +42,19 @@ public class AuthService {
         }
     }
 
-    private boolean isMisMatchPassword(Student findStudent, String password) {
+    private boolean isMisMatchPassword(final Student findStudent, final String password) {
         return !passwordEncoder.matches(password, findStudent.getPassword());
     }
 
-    private TokenResponseDto issueTokenDto(Long studentId, RoleType roleType) {
-        Map<String, Object> payload = createPayloadMap(studentId, roleType);
+    private TokenResponseDto issueTokenDto(final Long studentId, final RoleType roleType) {
+        final Map<String, Object> payload = createPayloadMap(studentId, roleType);
 
-        String accessToken = jwtTokenProvider.createToken(payload);
-        RefreshToken refreshToken = createRefreshToken(studentId);
+        final String accessToken = jwtTokenProvider.createToken(payload);
+        final RefreshToken refreshToken = createRefreshToken(studentId);
         return TokenResponseDto.of(accessToken, refreshToken.getTokenValue(), studentId);
     }
 
-    private Map<String, Object> createPayloadMap(Long studentId, RoleType roleType) {
+    private Map<String, Object> createPayloadMap(final Long studentId, final RoleType roleType) {
         return JwtTokenProvider.payloadBuilder()
                 .setSubject(String.valueOf(studentId))
                 .put(roleType.name())

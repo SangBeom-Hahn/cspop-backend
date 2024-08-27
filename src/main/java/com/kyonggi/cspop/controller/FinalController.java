@@ -25,7 +25,8 @@ public class FinalController {
             @PathVariable("studentId") Long studentId,
             @RequestBody @Validated FinalSaveRequest finalSaveRequest
     ) {
-        FinalSaveResponseDto finalSaveResponseDto = finalService.saveFinal(finalSaveRequest.toServiceDto(), studentId);
+        final FinalSaveResponseDto finalSaveResponseDto =
+                finalService.saveFinal(finalSaveRequest.toServiceDto(), studentId);
         return ResponseEntity
                 .created(URI.create("/api/proposals/" + finalSaveResponseDto.getId()))
                 .body(finalSaveResponseDto);

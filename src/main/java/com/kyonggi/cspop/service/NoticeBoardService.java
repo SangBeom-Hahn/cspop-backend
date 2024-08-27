@@ -33,67 +33,67 @@ public class NoticeBoardService {
     private final NoticeBoardRepository noticeBoardRepository;
     private final StudentRepository studentRepository;
 
-    public NoticeBoardSaveResponseDto save(String title, String content, Boolean fix, Long authorId) {
-        Student author = studentRepository.findById(authorId)
+    public NoticeBoardSaveResponseDto save(final String title, final String content, final Boolean fix, final Long authorId) {
+        final Student author = studentRepository.findById(authorId)
                 .orElseThrow(() -> new NoSuchStudentIdException(authorId));
-        NoticeBoard noticeBoard = new NoticeBoard(content, fix, title, START_VIEW_COUNT, author);
+        final NoticeBoard noticeBoard = new NoticeBoard(content, fix, title, START_VIEW_COUNT, author);
 
-        Long saveId = noticeBoardRepository.save(noticeBoard)
+        final Long saveId = noticeBoardRepository.save(noticeBoard)
                 .getId();
         return NoticeBoardSaveResponseDto.from(saveId);
     }
 
     @Transactional
-    public NoticeBoardReadResponseDto findNoticeBoard(Long noticeBoardId) {
-        NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeBoardId)
+    public NoticeBoardReadResponseDto findNoticeBoard(final Long noticeBoardId) {
+        final NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeBoardId)
                 .orElseThrow(() -> new NoSuchNoticeException(noticeBoardId));
         noticeBoard.changeView();
 
-        List<CommentResponseDto> commentResponseDtos = findCommentResponseDtos(noticeBoard.getComments());
+        final List<CommentResponseDto> commentResponseDtos = findCommentResponseDtos(noticeBoard.getComments());
         return NoticeBoardReadResponseDto.of(noticeBoard, commentResponseDtos);
     }
 
-    private static List<CommentResponseDto> findCommentResponseDtos(List<Comment> comments) {
+    private static List<CommentResponseDto> findCommentResponseDtos(final List<Comment> comments) {
         return comments.stream()
                 .map(CommentResponseDto::from)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public NoticeBoardsResponseDto findAllNoticeBoard(Integer page, int count) {
-        PageRequest pageRequest = PageRequest.of(page, count);
-        Page<NoticeBoard> noticeBoards = noticeBoardRepository.findAllByOrderByIdDesc(pageRequest);
+    public NoticeBoardsResponseDto findAllNoticeBoard(final Integer page, final int count) {
+        final PageRequest pageRequest = PageRequest.of(page, count);
+        final Page<NoticeBoard> noticeBoards = noticeBoardRepository.findAllByOrderByIdDesc(pageRequest);
 
-        List<NoticeBoardListResponseDto> noticeBoardListResponseDtos = noticeBoards.stream()
+        final List<NoticeBoardListResponseDto> noticeBoardListResponseDtos = noticeBoards.stream()
                 .map(NoticeBoardListResponseDto::from)
                 .collect(Collectors.toList());
 
         return NoticeBoardsResponseDto.of(noticeBoardListResponseDtos, PageInfo.from(noticeBoards));
     }
 
-    public void updateNoticeBoard(String content, Boolean fix, String title, Long id, Long authorId) {
-        NoticeBoard noticeBoard = noticeBoardRepository.findById(id)
+    public void updateNoticeBoard(final String content, final Boolean fix, final String title, final Long id, final Long authorId) {
+        final NoticeBoard noticeBoard = noticeBoardRepository.findById(id)
                 .orElseThrow(() -> new NoSuchNoticeException(id));
         validateAuthor(authorId, noticeBoard);
 
         changeNotice(content, fix, title, noticeBoard);
     }
 
-    private void changeNotice(String content, Boolean fix, String title, NoticeBoard noticeBoard) {
+    private void changeNotice(final String content, final Boolean fix, final String title, final NoticeBoard noticeBoard) {
         noticeBoard.changeFix(fix);
         noticeBoard.changeContent(content);
         noticeBoard.changeTitle(title);
     }
 
-    public void deleteNoticeBoard(Long id, Long authorId) {
-        NoticeBoard noticeBoard = noticeBoardRepository.findById(id)
+    public void deleteNoticeBoard(final Long id, final Long authorId) {
+        final NoticeBoard noticeBoard = noticeBoardRepository.findById(id)
                 .orElseThrow(() -> new NoSuchNoticeException(id));
         validateAuthor(authorId, noticeBoard);
 
         noticeBoardRepository.deleteById(id);
     }
 
-    private void validateAuthor(Long authorId, NoticeBoard noticeBoard) {
+    private void validateAuthor(final Long authorId, final NoticeBoard noticeBoard) {
         if (!noticeBoard.isAuthor(authorId)) {
             throw new InvalidAuthorException();
         }

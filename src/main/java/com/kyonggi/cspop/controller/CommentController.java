@@ -24,7 +24,7 @@ public class CommentController {
             @RequestBody CommentSaveRequest commentSaveRequest,
             @AuthenticationPrincipal LoginStudentRequest loginStudentRequest
     ) {
-        CommentSaveResponseDto commentSaveResponseDto =
+        final CommentSaveResponseDto commentSaveResponseDto =
                 commentService.save(commentSaveRequest.getContent(), loginStudentRequest.getId(), noticeBoardId);
         return ResponseEntity
                 .created(URI.create("/api/comments/" + commentSaveResponseDto.getId()))

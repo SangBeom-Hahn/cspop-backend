@@ -23,7 +23,8 @@ public class MiddleController {
             @PathVariable("studentId") Long studentId,
             @RequestBody @Validated MiddleSaveRequest middleSaveRequest
     ) {
-        MiddleSaveResponseDto middleSaveResponseDto = middleService.saveMiddle(middleSaveRequest.toServiceDto(), studentId);
+        final MiddleSaveResponseDto middleSaveResponseDto =
+                middleService.saveMiddle(middleSaveRequest.toServiceDto(), studentId);
         return ResponseEntity
                 .created(URI.create("/api/proposals/" + middleSaveResponseDto.getId()))
                 .body(middleSaveResponseDto);

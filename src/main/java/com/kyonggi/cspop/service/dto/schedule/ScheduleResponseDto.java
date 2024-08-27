@@ -25,7 +25,7 @@ public class ScheduleResponseDto {
 
     private LocalDate endDate;
 
-    public static ScheduleResponseDto from(Schedule schedule) {
+    public static ScheduleResponseDto from(final Schedule schedule) {
         return new ScheduleResponseDto(
                 schedule.getId(),
                 schedule.getStep(),

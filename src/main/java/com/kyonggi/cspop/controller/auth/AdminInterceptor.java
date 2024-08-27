@@ -14,9 +14,9 @@ public class AdminInterceptor implements HandlerInterceptor {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
         final String token = AuthorizationExtractor.extract(request);
-        String rolePayload = jwtTokenProvider.getRolePayload(token);
+        final String rolePayload = jwtTokenProvider.getRolePayload(token);
 
         validateRoleType(rolePayload);
 

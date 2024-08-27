@@ -10,10 +10,10 @@ public class CspopException extends RuntimeException {
     private final String errorCode;
 
     public CspopException(
-            String message,
-            String showMessage,
-            HttpStatus status,
-            String errorCode
+            final String message,
+            final String showMessage,
+            final HttpStatus status,
+            final String errorCode
     ) {
         super(message);
         this.showMessage = showMessage;

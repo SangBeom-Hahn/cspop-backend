@@ -12,7 +12,7 @@ public class ProposalSaveResponseDto {
 
     private Long id;
 
-    public static ProposalSaveResponseDto from(Long id) {
+    public static ProposalSaveResponseDto from(final Long id) {
         return new ProposalSaveResponseDto(id);
     }
 }

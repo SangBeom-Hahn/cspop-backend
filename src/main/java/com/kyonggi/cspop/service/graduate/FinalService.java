@@ -30,13 +30,13 @@ public class FinalService {
     private final FinalRepository finalRepository;
 
     public FinalSaveResponseDto saveFinal(
-            FinalSaveRequestDto finalSaveRequestDto,
-            Long studentId
+            final FinalSaveRequestDto finalSaveRequestDto,
+            final Long studentId
     ) {
-        Student student = studentRepository.findById(studentId)
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
 
-        Final saveFinal = new Final(
+        final Final saveFinal = new Final(
                 finalSaveRequestDto.getTitle(),
                 finalSaveRequestDto.getType(),
                 finalSaveRequestDto.getQualification(),
@@ -44,37 +44,37 @@ public class FinalService {
                 student
         );
 
-        Long saveId = finalRepository.save(saveFinal)
+        final Long saveId = finalRepository.save(saveFinal)
                 .getId();
 
         return FinalSaveResponseDto.from(saveId);
     }
 
-    public void approveFinal(Long studentId) {
-        Student student = studentRepository.findById(studentId)
+    public void approveFinal(final Long studentId) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Final findFinal = finalRepository.findByStudent(student)
+        final Final findFinal = finalRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchFinalException(studentId));
 
         changeFinal(student);
         findFinal.changeApprove(true);
     }
 
-    private void changeFinal(Student student) {
+    private void changeFinal(final Student student) {
         student.changeGraduationStep(PASS);
         student.changeGraduationStatus(Status.APPROVAL);
     }
 
-    public void rejectFinal(Long studentId, String reason) {
-        Student student = studentRepository.findById(studentId)
+    public void rejectFinal(final Long studentId, final String reason) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
-        Final findFinal = finalRepository.findByStudent(student)
+        final Final findFinal = finalRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchFinalException(studentId));
 
         changeFinal(reason, findFinal);
     }
 
-    private void changeFinal(String reason, Final findFinal) {
+    private void changeFinal(final String reason, final Final findFinal) {
         findFinal.changeApprove(false);
         findFinal.changeReason(reason);
     }

@@ -11,7 +11,7 @@ public class GuideBoardResponseDto {
 
     private String content;
 
-    public static GuideBoardResponseDto from(GuideBoard guideBoard) {
+    public static GuideBoardResponseDto from(final GuideBoard guideBoard) {
         return new GuideBoardResponseDto(guideBoard.getId(), guideBoard.getContent());
     }
 }

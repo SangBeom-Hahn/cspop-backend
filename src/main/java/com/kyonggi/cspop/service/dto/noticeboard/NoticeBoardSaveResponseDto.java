@@ -12,7 +12,7 @@ public class NoticeBoardSaveResponseDto {
 
     private Long id;
 
-    public static NoticeBoardSaveResponseDto from(Long id) {
+    public static NoticeBoardSaveResponseDto from(final Long id) {
         return new NoticeBoardSaveResponseDto(id);
     }
 }

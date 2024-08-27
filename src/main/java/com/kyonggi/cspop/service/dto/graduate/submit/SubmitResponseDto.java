@@ -12,7 +12,7 @@ public class SubmitResponseDto {
 
     private Long id;
 
-    public static SubmitResponseDto from(Long id) {
+    public static SubmitResponseDto from(final Long id) {
         return new SubmitResponseDto(id);
     }
 }

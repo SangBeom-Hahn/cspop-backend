@@ -33,7 +33,7 @@ public class GraduationResponseDto {
 
     private Step step;
 
-    public static GraduationResponseDto of(Student student, Graduation graduation) {
+    public static GraduationResponseDto of(final Student student, final Graduation graduation) {
         return new GraduationResponseDto(
                 student.getLoginId(),
                 student.getName(),
