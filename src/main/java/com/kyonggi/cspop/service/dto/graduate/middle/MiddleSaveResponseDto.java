@@ -13,7 +13,7 @@ public class MiddleSaveResponseDto {
 
     private Long id;
 
-    public static MiddleSaveResponseDto from(Long id) {
+    public static MiddleSaveResponseDto from(final Long id) {
         return new MiddleSaveResponseDto(id);
     }
 }

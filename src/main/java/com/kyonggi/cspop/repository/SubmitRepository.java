@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface SubmitRepository extends JpaRepository<Submit, Long> {
 
-    Optional<Submit> findByStudent(Student student);
+    Optional<Submit> findByStudent(final Student student);
 }

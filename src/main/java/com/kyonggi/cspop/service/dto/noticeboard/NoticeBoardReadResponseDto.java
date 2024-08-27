@@ -28,7 +28,7 @@ public class NoticeBoardReadResponseDto {
 
     private List<CommentResponseDto> commentResponseDtos;
 
-    public static NoticeBoardReadResponseDto of(NoticeBoard noticeBoard, List<CommentResponseDto> commentResponseDtos) {
+    public static NoticeBoardReadResponseDto of(final NoticeBoard noticeBoard, final List<CommentResponseDto> commentResponseDtos) {
         return new NoticeBoardReadResponseDto(
                 noticeBoard.getTitle(),
                 noticeBoard.getContent(),

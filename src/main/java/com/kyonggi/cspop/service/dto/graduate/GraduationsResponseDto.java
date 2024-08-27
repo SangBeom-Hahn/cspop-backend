@@ -14,7 +14,7 @@ public class GraduationsResponseDto {
 
     private List<GraduationListResponseDto> graduationListResponseDtos;
 
-    public static GraduationsResponseDto from(List<GraduationListResponseDto> graduationListResponseDtos) {
+    public static GraduationsResponseDto from(final List<GraduationListResponseDto> graduationListResponseDtos) {
         return new GraduationsResponseDto(graduationListResponseDtos);
     }
 }

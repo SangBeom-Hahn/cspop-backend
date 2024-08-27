@@ -31,6 +31,19 @@ class ScheduleTest {
                 .isEqualTo(status);
     }
 
+    @Test
+    @DisplayName("")
+    void test() {
+        //given
+        final Schedule schedule = new Schedule(LocalDate.now().plusDays(1), LocalDate.now().plusDays(100));
+
+        //when
+        schedule.changeEnd(LocalDate.now());
+
+        //then
+
+    }
+
     private static Stream<Arguments> dates() {
         return Stream.of(
                 Arguments.of(

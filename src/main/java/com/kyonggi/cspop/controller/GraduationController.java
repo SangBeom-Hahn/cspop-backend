@@ -26,7 +26,7 @@ public class GraduationController {
             @RequestBody @Validated GraduationSaveRequest graduationSaveRequest,
             @AuthenticationPrincipal LoginStudentRequest loginStudentRequest
     ) {
-        GraduationSaveResponseDto graduationSaveResponseDto = graduationService.saveGraduation(
+        final GraduationSaveResponseDto graduationSaveResponseDto = graduationService.saveGraduation(
                 graduationSaveRequest.getMethod(),
                 loginStudentRequest.getId()
         );

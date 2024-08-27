@@ -12,7 +12,7 @@ public class CommentSaveResponseDto {
 
     private Long id;
 
-    public static CommentSaveResponseDto from(Long id) {
+    public static CommentSaveResponseDto from(final Long id) {
         return new CommentSaveResponseDto(id);
     }
 }

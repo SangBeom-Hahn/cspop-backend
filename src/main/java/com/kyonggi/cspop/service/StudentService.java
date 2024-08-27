@@ -21,11 +21,11 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public StudentSignUpResponseDto saveStudent(StudentSignUpRequestDto studentSignUpRequestDto) {
+    public StudentSignUpResponseDto saveStudent(final StudentSignUpRequestDto studentSignUpRequestDto) {
         validateDuplicate(studentSignUpRequestDto);
-        String password = passwordEncoder.encode(studentSignUpRequestDto.getPassword());
+        final String password = passwordEncoder.encode(studentSignUpRequestDto.getPassword());
 
-        Student Student = new Student(
+        final Student Student = new Student(
                 studentSignUpRequestDto.getNumber(),
                 studentSignUpRequestDto.getLoginId(),
                 password,
@@ -42,18 +42,18 @@ public class StudentService {
         return StudentSignUpResponseDto.from(saveStudent);
     }
 
-    private void validateDuplicate(StudentSignUpRequestDto studentSignUpRequestDto) {
+    private void validateDuplicate(final StudentSignUpRequestDto studentSignUpRequestDto) {
         validateLoginId(studentSignUpRequestDto.getLoginId());
         validateNumber(studentSignUpRequestDto.getNumber());
     }
 
-    private void validateNumber(String number) {
+    private void validateNumber(final String number) {
         if (studentRepository.existsByNumber(number)) {
             throw new DuplicateStudentNumberException(number);
         }
     }
 
-    public void validateLoginId(String loginId) {
+    public void validateLoginId(final String loginId) {
         if (studentRepository.existsByLoginId(loginId)) {
             throw new DuplicateLoginIdException(loginId);
         }

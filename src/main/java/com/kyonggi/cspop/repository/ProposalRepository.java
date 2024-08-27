@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
 
-    Optional<Proposal> findByStudent(Student student);
+    Optional<Proposal> findByStudent(final Student student);
 }

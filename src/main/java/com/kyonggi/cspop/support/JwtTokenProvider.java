@@ -4,6 +4,7 @@ import com.kyonggi.cspop.exception.InvalidTokenException;
 import com.kyonggi.cspop.exception.TokenInvalidExpiredException;
 import com.kyonggi.cspop.exception.TokenInvalidFormException;
 import com.kyonggi.cspop.exception.TokenInvalidSecretKeyException;
+import com.kyonggi.cspop.utils.validator.CspopConstant;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,8 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
+
+import static com.kyonggi.cspop.utils.validator.CspopConstant.ROLE;
 
 @Component
 public class JwtTokenProvider {
@@ -49,7 +52,7 @@ public class JwtTokenProvider {
     public String getRolePayload(final String token) {
         return tokenToJws(token)
                 .getBody()
-                .get("role")
+                .get(ROLE)
                 .toString();
     }
 
@@ -95,13 +98,13 @@ public class JwtTokenProvider {
             this.claims = Jwts.claims();
         }
 
-        public PayloadBuilder setSubject(String subject) {
+        public PayloadBuilder setSubject(final String subject) {
             claims.setSubject(subject);
             return this;
         }
 
-        public PayloadBuilder put(String payload) {
-            claims.put("role", payload);
+        public PayloadBuilder put(final String payload) {
+            claims.put(ROLE, payload);
             return this;
         }
 

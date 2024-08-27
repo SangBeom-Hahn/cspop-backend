@@ -28,20 +28,20 @@ public class GraduationService {
     private final GraduationRepository graduationRepository;
     private final StudentRepository studentRepository;
 
-    public GraduationSaveResponseDto saveGraduation(String method, Long id) {
-        Student student = studentRepository.findById(id)
+    public GraduationSaveResponseDto saveGraduation(final String method, final Long id) {
+        final Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new NoSuchStudentIdException(id));
-        Graduation graduation = new Graduation(Method.from(method), UN_APPROVAL, RECEIVE, null, null,
+        final Graduation graduation = new Graduation(Method.from(method), UN_APPROVAL, RECEIVE, null, null,
                 null, student);
 
-        Long saveId = graduationRepository.save(graduation)
+        final Long saveId = graduationRepository.save(graduation)
                 .getId();
         return GraduationSaveResponseDto.from(saveId);
     }
 
     @Transactional(readOnly = true)
     public GraduationsResponseDto findAllGraduation() {
-        List<GraduationListResponseDto> graduationListResponseDtos = graduationRepository.findAll()
+        final List<GraduationListResponseDto> graduationListResponseDtos = graduationRepository.findAll()
                 .stream()
                 .map(graduation -> GraduationListResponseDto.of(graduation.getStudent(), graduation))
                 .toList();
@@ -50,11 +50,11 @@ public class GraduationService {
     }
 
     @Transactional(readOnly = true)
-    public GraduationResponseDto findGraduation(Long studentId) {
-        Student student = studentRepository.findById(studentId)
+    public GraduationResponseDto findGraduation(final Long studentId) {
+        final Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NoSuchStudentIdException(studentId));
 
-        Graduation graduation = graduationRepository.findByStudent(student)
+        final Graduation graduation = graduationRepository.findByStudent(student)
                 .orElseThrow(() -> new NoSuchGraduationException(studentId));
         return GraduationResponseDto.of(student, graduation);
     }

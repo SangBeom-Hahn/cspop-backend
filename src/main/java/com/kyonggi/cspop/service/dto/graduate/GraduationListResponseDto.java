@@ -33,7 +33,7 @@ public class GraduationListResponseDto {
 
     private Long studentId;
 
-    public static GraduationListResponseDto of(Student student, Graduation graduation) {
+    public static GraduationListResponseDto of(final Student student, final Graduation graduation) {
         return new GraduationListResponseDto(
                 student.getLoginId(),
                 student.getName(),

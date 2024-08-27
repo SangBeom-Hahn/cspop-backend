@@ -10,11 +10,11 @@ public enum Method {
 
     private final String name;
 
-    Method(String name) {
+    Method(final String name) {
         this.name = name;
     }
 
-    public static Method from(String name) {
+    public static Method from(final String name) {
         return Arrays.stream(values())
                 .filter(method -> method.name.equals(name))
                 .findFirst()

@@ -1,5 +1,6 @@
 package com.kyonggi.cspop.domain.student;
 
+import com.kyonggi.cspop.controller.dto.ValidateMessage;
 import com.kyonggi.cspop.exception.WrongPhoneNumberPatternException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -10,27 +11,29 @@ import lombok.NoArgsConstructor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.kyonggi.cspop.controller.dto.ValidateMessage.PHONE_PATTERN;
+
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PhoneNumber {
 
-    private static final Pattern PHONE_PATTERN = Pattern.compile("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$");
+    private static final Pattern PATTERN = Pattern.compile(PHONE_PATTERN);
 
     @Column(name = "phone_number", nullable = false, length = 20)
     private String value;
 
-    private PhoneNumber(String value) {
+    private PhoneNumber(final String value) {
         this.value = value;
     }
 
-    public static PhoneNumber from(String value) {
+    public static PhoneNumber from(final String value) {
         validatePattern(value);
         return new PhoneNumber(value);
     }
 
-    private static void validatePattern(String value) {
-        Matcher matcher = PHONE_PATTERN.matcher(value);
+    private static void validatePattern(final String value) {
+        Matcher matcher = PATTERN.matcher(value);
         if (!matcher.matches()) {
             throw new WrongPhoneNumberPatternException(value);
         }

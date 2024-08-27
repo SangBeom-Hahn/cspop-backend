@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface GraduationRepository extends JpaRepository<Graduation, Long> {
 
-    Optional<Graduation> findByStudent(Student student);
+    Optional<Graduation> findByStudent(final Student student);
 }

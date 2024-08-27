@@ -35,12 +35,12 @@ public class Schedule extends BaseEntity {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
-    public Schedule(LocalDate startDate, LocalDate endDate) {
+    public Schedule(final LocalDate startDate, final LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Schedule(Step step, Status status, LocalDate startDate, LocalDate endDate) {
+    public Schedule(final Step step, final Status status, final LocalDate startDate, final LocalDate endDate) {
         this.step = step;
         this.status = status;
         this.startDate = startDate;
@@ -51,11 +51,11 @@ public class Schedule extends BaseEntity {
         this.status = Status.of(now(), startDate, endDate);
     }
 
-    public void changeStart(LocalDate startDate) {
+    public void changeStart(final LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void changeEnd(LocalDate endDate) {
+    public void changeEnd(final LocalDate endDate) {
         this.endDate = endDate;
     }
 }

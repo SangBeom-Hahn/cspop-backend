@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.kyonggi.cspop.utils.validator.CspopConstant.SCHDULE_ID;
+
 @Slf4j
 @Service
 @Transactional
@@ -28,12 +30,12 @@ public class ScheduleService {
 
     @Transactional(readOnly = true)
     public SchedulesResponseDto findAllSchedule() {
-        List<ScheduleResponseDto> scheduleResponseDtos = scheduleRepository.findAll()
+        final List<ScheduleResponseDto> scheduleResponseDtos = scheduleRepository.findAll()
                 .stream()
                 .map(ScheduleResponseDto::from)
                 .collect(Collectors.toList());
 
-        Board board = scheduleBoardRepository.findById(3L)
+        final Board board = scheduleBoardRepository.findById(SCHDULE_ID)
                 .orElseThrow();
 
         return SchedulesResponseDto.of(
@@ -42,8 +44,8 @@ public class ScheduleService {
         );
     }
 
-    public void updateSchedule(LocalDate startDate, LocalDate endDate, Long id) {
-        Schedule schedule = scheduleRepository.findById(id)
+    public void updateSchedule(final LocalDate startDate, final LocalDate endDate, final Long id) {
+        final Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new NoSuchScheduleException(id));
         schedule.changeStart(startDate);
         schedule.changeEnd(endDate);

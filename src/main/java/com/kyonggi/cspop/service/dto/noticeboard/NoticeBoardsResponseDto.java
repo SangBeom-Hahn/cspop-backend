@@ -17,7 +17,7 @@ public class NoticeBoardsResponseDto {
 
     private PageInfo pageInfo;
 
-    public static NoticeBoardsResponseDto of(List<NoticeBoardListResponseDto> noticeBoardListResponseDtos, PageInfo pageInfo) {
+    public static NoticeBoardsResponseDto of(final List<NoticeBoardListResponseDto> noticeBoardListResponseDtos, final PageInfo pageInfo) {
         return new NoticeBoardsResponseDto(noticeBoardListResponseDtos, pageInfo);
     }
 }

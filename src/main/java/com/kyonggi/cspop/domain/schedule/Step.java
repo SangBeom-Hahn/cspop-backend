@@ -11,7 +11,7 @@ public enum Step {
 
     private final String name;
 
-    Step(String name) {
+    Step(final String name) {
         this.name = name;
     }
 

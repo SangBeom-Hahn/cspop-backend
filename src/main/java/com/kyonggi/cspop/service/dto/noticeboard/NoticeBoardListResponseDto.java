@@ -24,7 +24,7 @@ public class NoticeBoardListResponseDto {
 
     private String authorLoginId;
 
-    public static NoticeBoardListResponseDto from(NoticeBoard noticeBoard) {
+    public static NoticeBoardListResponseDto from(final NoticeBoard noticeBoard) {
         return new NoticeBoardListResponseDto(
                 noticeBoard.getTitle(),
                 noticeBoard.getFix(),

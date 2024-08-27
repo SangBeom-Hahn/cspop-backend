@@ -23,7 +23,8 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<StudentSignUpResponseDto> join(@RequestBody @Validated StudentSignUpRequest studentSignUpRequest) {
-        StudentSignUpResponseDto studentSignUpResponseDto = studentService.saveStudent(studentSignUpRequest.toServiceDto());
+        final StudentSignUpResponseDto studentSignUpResponseDto =
+                studentService.saveStudent(studentSignUpRequest.toServiceDto());
         return ResponseEntity
                 .created(URI.create("/api/students" + studentSignUpResponseDto.getId()))
                 .body(studentSignUpResponseDto);

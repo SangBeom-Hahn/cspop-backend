@@ -19,7 +19,7 @@ public class CommentResponseDto {
 
     private String loginId;
 
-    public static CommentResponseDto from(Comment comment) {
+    public static CommentResponseDto from(final Comment comment) {
         return new CommentResponseDto(
                 comment.getContent(),
                 comment.getWriteDate(),

@@ -28,10 +28,10 @@ public class PageInfo {
     }
 
     public static PageInfo from(final Page<?> data) {
-        int pageNumber = data.getPageable().getPageNumber();
-        int totalPages = data.getTotalPages();
-        int pageSize = data.getPageable().getPageSize();
-        long totalElements = data.getTotalElements();
+        final int pageNumber = data.getPageable().getPageNumber();
+        final int totalPages = data.getTotalPages();
+        final int pageSize = data.getPageable().getPageSize();
+        final long totalElements = data.getTotalElements();
         return ofNextPage(pageNumber, totalPages, pageSize, totalElements);
     }
 }

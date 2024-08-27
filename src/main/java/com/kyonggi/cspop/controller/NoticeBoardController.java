@@ -28,7 +28,7 @@ public class NoticeBoardController {
             @AuthenticationPrincipal LoginStudentRequest loginStudentRequest,
             @RequestBody @Validated NoticeBoardSaveRequest noticeBoardSaveRequest
     ) {
-        NoticeBoardSaveResponseDto noticeBoardSaveResponseDto = noticeBoardService.save(
+        final NoticeBoardSaveResponseDto noticeBoardSaveResponseDto = noticeBoardService.save(
                 noticeBoardSaveRequest.getTitle(),
                 noticeBoardSaveRequest.getContent(),
                 noticeBoardSaveRequest.getFix(),

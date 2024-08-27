@@ -12,7 +12,7 @@ public class GraduationSaveResponseDto {
 
     private Long id;
 
-    public static GraduationSaveResponseDto from(Long id) {
+    public static GraduationSaveResponseDto from(final Long id) {
         return new GraduationSaveResponseDto(id);
     }
 }

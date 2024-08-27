@@ -24,28 +24,32 @@ public class CommentService {
     private final StudentRepository studentRepository;
     private final NoticeBoardRepository noticeBoardRepository;
 
-    public CommentSaveResponseDto save(String content, Long authorId, Long noticeId) {
-        Student student = studentRepository.findById(authorId)
+    public CommentSaveResponseDto save(final String content, final Long authorId, final Long noticeId) {
+        final Student student = studentRepository.findById(authorId)
                 .orElseThrow(() -> new NoSuchStudentIdException(authorId));
-        NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeId)
+        final NoticeBoard noticeBoard = noticeBoardRepository.findById(noticeId)
                 .orElseThrow(() -> new NoSuchNoticeException(noticeId));
 
-        Comment comment = new Comment(content, student, noticeBoard);
-        Long saveId = commentRepository.save(comment)
+        final Comment comment = new Comment(content, student, noticeBoard);
+        final Long saveId = commentRepository.save(comment)
                 .getId();
         return CommentSaveResponseDto.from(saveId);
     }
 
-    public void deleteComment(Long id, Long authorId) {
-        Comment comment = commentRepository.findById(id)
+    public void deleteComment(final Long id, final Long authorId) {
+        final Comment comment = commentRepository.findById(id)
                 .orElseThrow(() -> new NoSuchCommentException(id));
         validateAuthor(authorId, comment);
         commentRepository.deleteById(id);
     }
 
-    private static void validateAuthor(Long authorId, Comment comment) {
-        if (!comment.isAuthor(authorId)) {
+    private static void validateAuthor(final Long authorId, final Comment comment) {
+        if (isNotAuthor(authorId, comment)) {
             throw new InvalidAuthorException();
         }
+    }
+
+    private static boolean isNotAuthor(final Long authorId, final Comment comment) {
+        return !comment.isAuthor(authorId);
     }
 }

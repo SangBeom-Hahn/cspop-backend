@@ -26,7 +26,7 @@ public class GuideBoardController {
         );
     }
 
-    @PutMapping("/api/admins/guideboards")
+    @PutMapping("/api/guideboards/admins")
     public ResponseEntity<Void> updateGuidanceBoard(
             @RequestBody @Valid GuideBoardUpdateRequest guideBoardUpdateRequest
     ) {

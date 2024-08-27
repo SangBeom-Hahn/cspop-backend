@@ -23,7 +23,8 @@ public class ProposalController {
             @PathVariable("studentId") Long studentId,
             @RequestBody @Validated ProposalSaveRequest proposalSaveRequest
     ) {
-        ProposalSaveResponseDto proposalSaveResponseDto = proposalService.saveProposal(proposalSaveRequest.toServiceDto(), studentId);
+        final ProposalSaveResponseDto proposalSaveResponseDto =
+                proposalService.saveProposal(proposalSaveRequest.toServiceDto(), studentId);
         return ResponseEntity
                 .created(URI.create("/api/proposals/" + proposalSaveResponseDto.getId()))
                 .body(proposalSaveResponseDto);

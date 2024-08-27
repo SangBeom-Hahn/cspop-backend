@@ -21,7 +21,7 @@ public class SubmitController {
 
     @PostMapping("/{studentId}")
     public ResponseEntity<SubmitResponseDto> submit(@PathVariable("studentId") Long studentId) {
-        SubmitResponseDto submitResponseDto = submitService.saveSubmit(studentId);
+        final SubmitResponseDto submitResponseDto = submitService.saveSubmit(studentId);
 
         return ResponseEntity
                 .created(URI.create("/api/submits/" + submitResponseDto.getId()))

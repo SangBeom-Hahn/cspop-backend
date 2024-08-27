@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface FinalRepository extends JpaRepository<Final, Long> {
 
-    Optional<Final> findByStudent(Student student);
+    Optional<Final> findByStudent(final Student student);
 }

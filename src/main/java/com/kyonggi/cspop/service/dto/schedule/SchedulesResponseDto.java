@@ -17,8 +17,8 @@ public class SchedulesResponseDto {
     private ScheduleBoardResponseDto scheduleBoardResponseDto;
 
     public static SchedulesResponseDto of(
-            List<ScheduleResponseDto> scheduleResponseDtos,
-            ScheduleBoardResponseDto scheduleBoardResponseDto
+            final List<ScheduleResponseDto> scheduleResponseDtos,
+            final ScheduleBoardResponseDto scheduleBoardResponseDto
     ) {
         return new SchedulesResponseDto(scheduleResponseDtos, scheduleBoardResponseDto);
     }
